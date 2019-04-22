@@ -12,7 +12,7 @@ public class JavaUtilArraysSort
 {
    public static void sortArray(int[] arr) {
       /* Arrays.sort() from Java Collections Framework, see
-       * https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#sort-int:A-
+       * https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Arrays.html#sort(int%5B%5D)
        *
        * The sorting algorithm is a Dual-Pivot Quicksort by Vladimir Yaroslavskiy, Jon Bentley, and Joshua Bloch. This
        * algorithm offers O(n log(n)) performance on many data sets that cause other quicksorts to degrade to quadratic
