@@ -72,7 +72,7 @@ class MergeSort
    // merge()
    private static void sort(int arr[], int l, int r)
    {
-      if (l < r)
+      if (l < r )
       {
          // Find the middle point
          int m = (l+r)/2;
@@ -88,9 +88,11 @@ class MergeSort
 
    public static void sortArray(int arr[])
    {
-      final int kStartIndex = 0;
-      final int kEndIndex = arr.length - 1;
-      sort(arr, kStartIndex, kEndIndex);
+      if(arr!=null && arr.length>0) {
+         final int kStartIndex = 0;
+         final int kEndIndex = arr.length - 1;
+         sort(arr, kStartIndex, kEndIndex);
+      }
    }
 
    @Test

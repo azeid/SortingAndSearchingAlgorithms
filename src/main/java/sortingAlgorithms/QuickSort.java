@@ -64,9 +64,11 @@ public class QuickSort
 
    public static void sortArray(int arr[])
    {
-      final int kStartIndex = 0;
-      final int kEndIndex = arr.length - 1;
-      sort(arr, kStartIndex, kEndIndex);
+      if(arr!=null && arr.length>0) {
+         final int kStartIndex = 0;
+         final int kEndIndex = arr.length - 1;
+         sort(arr, kStartIndex, kEndIndex);
+      }
    }
 
    @Test

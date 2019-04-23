@@ -5,8 +5,6 @@ package sortingAlgorithms;
 import org.junit.jupiter.api.Test;
 import shared.SharedFunctions;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -23,27 +21,25 @@ public class ShellSort
       {
          throw new IllegalArgumentException("Input array cannot be null!");
       }
+      if(arr.length>0) {
+         // Start with a large gap and keep reducing it until we reach 0
+         for (int gap = (arr.length / 2); gap > 0; gap /= 2) {
+            for (int i = gap; i < arr.length; ++i) {
+               int temp = arr[i];
 
-      // Start with a large gap and keep reducing it until we reach 0
-      for(int gap = (arr.length / 2); gap > 0; gap /= 2)
-      {
-         for (int i = gap; i < arr.length; ++i)
-         {
-            int temp = arr[i];
+               // Compare i against elements that are within gap distance from it
+               // and keep going until we either don't have elements within gap or
+               // the number is not higher than our temp value.
+               int j = i;
+               for (; j >= gap && arr[j - gap] > temp; j -= gap) {
+                  // If we get here, then arr[j - gap] is greater then temp
+                  // Swap
+                  arr[j] = arr[j - gap];
+               }
 
-            // Compare i against elements that are within gap distance from it
-            // and keep going until we either don't have elements within gap or
-            // the number is not higher than our temp value.
-            int j = i;
-            for (; j >= gap && arr[j - gap] > temp; j -= gap)
-            {
-               // If we get here, then arr[j - gap] is greater then temp
-               // Swap
-               arr[j] = arr[j - gap];
+               // Put temp in correct location
+               arr[j] = temp;
             }
-
-            // Put temp in correct location
-            arr[j] = temp;
          }
       }
    }

@@ -4,8 +4,6 @@ package sortingAlgorithms;
 import org.junit.jupiter.api.Test;
 import shared.SharedFunctions;
 
-import java.rmi.activation.ActivationGroup_Stub;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // Nice video: https://www.youtube.com/watch?v=emeME__917E
@@ -104,25 +102,23 @@ public class TimSort
       {
          throw new IllegalArgumentException("Input array cannot be null!");
       }
+      if(arr.length>0) {
+         // sort sub-arrays for size RUN using insertionSort
+         for (int i = 0; i < arr.length; i += RUN) {
+            InsertionSort.sortArrayInRange(arr, i, Math.min((i + RUN - 1), (arr.length - 1)));
+         }
 
-      // sort sub-arrays for size RUN using insertionSort
-      for (int i = 0; i < arr.length; i += RUN)
-      {
-         InsertionSort.sortArrayInRange(arr, i, Math.min((i + RUN - 1) , (arr.length - 1)));
-      }
-
-      // Once we have sorted sub-arrays, we need to merge them.
-      // Array sizes with start with size RUN and then double after
-      // every merge operation.
-      for (int size = RUN; size < arr.length; size *= 2)
-      {
-         // Start at the first sub-array and merge two sub-arrays of length size
-         // where size doubles on every iteration of outer loop.
-         for (int leftIndex = 0; leftIndex < arr.length; leftIndex += 2*size)
-         {
-            final int kMiddleIndex = leftIndex + size - 1;
-            final int kRightEndIndex = Math.min((leftIndex + 2*size - 1), (arr.length - 1));
-            mergeSort(arr, leftIndex, kMiddleIndex, kRightEndIndex);
+         // Once we have sorted sub-arrays, we need to merge them.
+         // Array sizes with start with size RUN and then double after
+         // every merge operation.
+         for (int size = RUN; size < arr.length; size *= 2) {
+            // Start at the first sub-array and merge two sub-arrays of length size
+            // where size doubles on every iteration of outer loop.
+            for (int leftIndex = 0; leftIndex < arr.length; leftIndex += 2 * size) {
+               final int kMiddleIndex = leftIndex + size - 1;
+               final int kRightEndIndex = Math.min((leftIndex + 2 * size - 1), (arr.length - 1));
+               mergeSort(arr, leftIndex, kMiddleIndex, kRightEndIndex);
+            }
          }
       }
 
