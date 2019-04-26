@@ -67,7 +67,9 @@ class RadixSort
 
    public static void sortArray(int arr[])
    {
-      sort(arr, arr.length);
+      if(arr!=null && arr.length>0) {
+         sort(arr, arr.length);
+      }
    }
 
    // Note: RadixSort does not like negative numbers.

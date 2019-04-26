@@ -20,13 +20,14 @@ public class JavaUtilArraysSort
        *
        * pre: arr != null
        */
-      if (null == arr)
+      if (null == arr )
       {
          throw new IllegalArgumentException("Input array cannot be null!");
       }
-
-      // Sort the whole array
-      Arrays.sort(arr);
+      if(arr.length>0) {
+         // Sort the whole array
+         Arrays.sort(arr);
+      }
    }
 
    @Test public void checkSortCorrectness()

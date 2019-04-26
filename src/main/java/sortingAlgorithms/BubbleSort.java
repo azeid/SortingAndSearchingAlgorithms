@@ -13,20 +13,19 @@ public class BubbleSort
       {
          throw new IllegalArgumentException("Input array cannot be null!");
       }
+      if(arr.length>0) {
 
-      int n = arr.length;
+         int n = arr.length;
 
-      for (int i = 0; i < n - 1; ++i)
-      {
-         // ith element is already in the correct position
-         for (int j = 0; j < (n - i - 1); ++j)
-         {
-            if (arr[j] > arr[j+1])
-            {
-               // Swap items
-               int temp = arr[j];
-               arr[j] = arr[j+1];
-               arr[j+1] = temp;
+         for (int i = 0; i < n - 1; ++i) {
+            // ith element is already in the correct position
+            for (int j = 0; j < (n - i - 1); ++j) {
+               if (arr[j] > arr[j + 1]) {
+                  // Swap items
+                  int temp = arr[j];
+                  arr[j] = arr[j + 1];
+                  arr[j + 1] = temp;
+               }
             }
          }
       }

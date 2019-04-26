@@ -3,8 +3,6 @@ package sortingAlgorithms;
 import org.junit.jupiter.api.Test;
 import shared.SharedFunctions;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -13,15 +11,17 @@ public class InsertionSort
    public static void sortArray(int[] arr) {
       // insertion sort CLRS textbook
       // pre: arr != null
-      if (null == arr)
+      if (null == arr )
       {
          throw new IllegalArgumentException("Input array cannot be null!");
       }
-
-      // Sort the whole array
-      final int kLeftIndex = 0;
-      final int kRightInex = arr.length - 1;
-      sortArrayInRange(arr, kLeftIndex, kRightInex);
+      if(arr.length>0)
+      {
+         // Sort the whole array
+         final int kLeftIndex = 0;
+         final int kRightInex = arr.length - 1;
+         sortArrayInRange(arr, kLeftIndex, kRightInex);
+      }
    }
 
    // This function was broken to be used in other sorting algorithm that has
@@ -34,17 +34,19 @@ public class InsertionSort
       {
          throw new IllegalArgumentException("Input array cannot be null!");
       }
+      if(arr.length>0)
+      {
+         for (int i = leftIndex + 1; i <= rightIndex; ++i) {
+            int key = arr[i];
+            // insert arr[j] into the sorted sequence arr[0 .. j - 1]
+            int j = i - 1;
+            while (j >= leftIndex && arr[j] > key) {
+               arr[j + 1] = arr[j];
+               j--;
+            }
 
-      for (int i = leftIndex + 1; i <= rightIndex; ++i) {
-         int key = arr[i];
-         // insert arr[j] into the sorted sequence arr[0 .. j - 1]
-         int j = i - 1;
-         while (j >= leftIndex && arr[j] > key) {
-            arr[j + 1] = arr[j];
-            j--;
+            arr[j + 1] = key;
          }
-
-         arr[j + 1] = key;
       }
    }
 
