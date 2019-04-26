@@ -17,7 +17,11 @@ public class QuickSort
    of pivot */
    private static int partition(int arr[], int low, int high)
    {
-      int pivot = arr[high];
+
+
+      // To avoid stack overflow for larger sets of data  choosing  pivot from middle of partition instead of  high.
+      //int pivot = arr[high];
+      int pivot = arr[low+(high-low)/2];
       int i = (low-1); // index of smaller element
       for (int j=low; j<high; j++)
       {
