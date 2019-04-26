@@ -1,7 +1,7 @@
 ##
 # Graph generator for the Sorting Algorithms Benchmarking project.
 #
-# Authon: Jose Carlos Martinez Garcia-Vaso
+# Author: Jose Carlos Martinez Garcia-Vaso
 #
 
 import argparse
@@ -105,7 +105,12 @@ def plot_data(data, filename, ignore_input=None, ignore_alg=None, norm_alg=None)
 
         if norm_alg:
             logging.info('Normalizing the data using algorithm '.format(norm_alg))
-            norm_alg_times = list(input_val[norm_alg]['sorting_time'])
+            if norm_alg in input_val:
+                norm_alg_times = list(input_val[norm_alg]['sorting_time'])
+            else:
+                logging.error('Algorithm {0} is not included in the data, so it will not be used for normalization'
+                              .format(norm_alg))
+                norm_alg = None
 
         for alg_key, alg_val in input_val.items():
             # Ignore certain algs
@@ -114,14 +119,18 @@ def plot_data(data, filename, ignore_input=None, ignore_alg=None, norm_alg=None)
 
             logging.info('Plotting algorithm {0}...'.format(alg_key))
             if norm_alg:
-                plt.plot(alg_val['array_size'], [ a/b for a,b in zip(alg_val['sorting_time'], norm_alg_times)],
+                plt.plot(alg_val['array_size'], [a/b for a,b in zip(alg_val['sorting_time'], norm_alg_times)],
                          label=' '.join(re.sub('(?!^)([A-Z][a-z]+)', r' \1', alg_key).split()))
             else:
                 plt.plot(alg_val['array_size'], alg_val['sorting_time'],
                          label=' '.join(re.sub('(?!^)([A-Z][a-z]+)', r' \1', alg_key).split()))
 
         plt.xlabel('Input Array Size (entries)')
-        plt.ylabel('Sorting Time (ms)')
+        if norm_alg:
+            plt.ylabel('Sorting Time Normalized by {0}'.format(' '.join(re.sub('(?!^)([A-Z][a-z]+)', r' \1',
+                                                                                    norm_alg).split())))
+        else:
+            plt.ylabel('Sorting Time (ms)')
 
         plt.title("Sorting Time vs. Input Array Size\n for {0}"
                   .format(' '.join(re.sub('(?!^)([A-Z][a-z]+)', r' \1', input_key).split())))
