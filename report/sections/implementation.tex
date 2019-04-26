@@ -1,0 +1,64 @@
+We have made available the source code of all implementations at the repository \url{https://github.com/azeid/StableMatchingParallel}. We provide a description of each implementation and some of the rationale of their design in the following subsections.
+
+\subsection{Parallelization of Gale-Shapley}
+
+As discussed in the introduction section we decided to not modify heavily the basic structure of Gale-Shapley algorithm and instead use some of the concurrent data structure and synchronization mechanism provided by Java. There were three major modifications for the algorithm to be parallelize it.
+
+\begin{enumerate}
+    \item The algorithm was encapsulated in a class implementing \texttt{Runnable}. Shared data among workers are 2 integer array to keep track of proposals and engagements, and the two data structures described below.
+    \item Instead of a simple \texttt{LinkedList} or \texttt{ArrayList} for keeping track of which men are free. We decided to use a ConcurrentLinkedQueue. This is because the underlying implementation is based on the wait-free algorithm described by Michael and Scott\cite{michael1995simple}. Since the implementation is either removing one element or adding an element and not iterating over it, this was a safe choice.
+    \item Last data structure shared among all workers is an array of objects that we use as an array of monitors. 
+\end{enumerate}
+
+Given these modifications we were able to run the algorithm in multiple threads using a cached thread pool, and submitting as many workers to the thread pool as there are men in the problem. At this point the reader might be wondering how were the ConcurrentLinkedQueue and the array simple \texttt{Object} used to coordinate all threads.
+Let's consider the case of a thread that arrives to the while condition, this list is sort of a ticket and retrieves a number that identifies the work that a man will do. This number will be unique since the list is initialized with all the men in the problem and it is thread-safe. Furthermore is wait-free. Execution of the algorithm continues and for that particular man it will get the identifier of the next woman to propose to. This identifier is used in the array of objects and using the \texttt{synchronized} keyword grabs the intrinsic lock for that object. At this point the rest of the algorithm is guaranteed to be thread safe because any thread only has a unique pair of identifiers for a man and a woman. Therefore is possible for multiple threads to run in parallel as long as they are not trying to propose to the same women. Finally, once the thread finish the proposal-rejection phase goes back to the beginning of the loop and tries to get another man to pair, if the list of free men is empty it simply terminates.
+
+\subsection{Stable Marriage by Coroutines}
+
+For this algorithm we tried different approaches and none of them were successful. This was because our evaluation methodology requires us to use Java for a fair comparison and Java does not natively support coroutines. Although some efforts to modify the Java Virtual Machine and provide an API to support coroutines are available\cite{jkuserializable}\cite{coroutinesoffbynull}, we were unsuccessful in replicating the same behavior of transferring execution control implicitly and preemptively as stated in Allison's algorithm. Another approach we tried was to use a framework of coroutines\footnote{https://github.com/esoco/coroutines} implemented in Java on top of the \texttt{CompletableFuture} class. 
+Therefore we excluded this implementation from our evaluations.
+
+\subsection{Divide and Conquer}
+
+\begin{enumerate}
+    \item We created a class to encapsulate the internal data structures and merging algorithm. The class implemented the Callable interface. Spawned threads would return 'Future Results' that included the final matching between two matching subsets. 
+    \item The top level class encapsulates the following:
+    \begin{enumerate}
+    \item Two integer arrays for men and women preference lists
+    \item An array of type $MatchingPairIndeces$ to hold matchings
+    \item A class $MergeTwoMatchingSets$ which has three $MatchingPairIndices$ arrays 'Left', 'Right', and 'Final Matching'. This class takes in two sets and merges them together. Additionally, it has a function to resolve any conflicts.
+    \end{enumerate}
+\end{enumerate}
+
+\subsubsection{Resolving Conflicts}
+
+Below is the pseudo code for the function that handles resolving matching conflicts.
+\begin{figure}[!htb]
+    
+    \begin{algorithmic}
+    \FOR{matching $m$ in currentMatching}
+        \IF{currentMatching contains $w$}
+            \WHILE{currentMatching contains $w$}
+                \IF{$w$ prefers $m$ to her fianc\'e $m\prime$} 
+                    \STATE swap $m$ and $m\prime$ matching
+                    \STATE match $m\prime$ to his next preference after $w$
+                \ELSE
+                    \STATE match $m$ to his next preference
+                    \STATE add $m$ and $w\prime$ matching to currentMatching
+                \ENDIF
+            \ENDWHILE
+        \ELSE
+            \STATE add $m$ and $w$ to currentMatching
+        \ENDIF
+    \ENDFOR
+    \end{algorithmic}
+\end{figure}
+
+\subsubsection{Handling Odd Number of Subsets }
+If the number of subsets is odd, then the last subset gets cached and added to the final results to make it into the next iteration. The algorithm will eventually gets to 1 final matching set. 
+
+\subsection{PII}
+Implementation of this algorithm proved to be more elaborated than initially envisioned. the purpose behind this implementation was to determine whether any improvements could be detected even when not meeting the resources requirement of $n^2$ processors. After the implementation of a sequential variant of this algorithm was completed, it was identified that many areas in the code that would remain sequential after paralleling phases would considerable overhead for the execution time results. Since the equipment considered for the results benchmarking had far less resources than the amount required by the algorithm, It was speculated that the improvements seen by paralleling sections of the code with a small amount of processors would not compensate the overhead of sequential routines, deeming it worthless to complete a parallel implementation of this algorithm considering the amount of effort required to complete the tasks.
+
+\subsection{Master-Slave}
+For this implementation we started with a Master-Slave Java pattern using a shared resource. The master (called the matchmaker) queried the proposers for their preference. Then it would group requests so that if a, b, and c all requested x, these requests would be together and sent to a slave to determine the preference of x. This would be for all the proposals. The matchmaker would not progress until all of the proposals that had been sent out had been responded to in one way or another. In the next round, the master would only get the preferences of those proposers who are unmatched and spin up the appropriate threads. Any proposer that had a partner but became unmatched would pick up in the proposal queue where they left off. So even if it was round 4 and the proposer had been matched with their first choice initially, being unmatched would cause the proposer to propose to their second choice. While this implementation passed initial smoke tests of correctness, the full benchmark proved to test the code too much and the bugs could not be resolved. As such, this implementation is mostly complete but buggy and has been excluded from our results.

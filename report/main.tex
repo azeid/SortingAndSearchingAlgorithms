@@ -1,0 +1,90 @@
+\documentclass[sigconf,table]{acmart}
+\usepackage{graphics}
+\usepackage[utf8]{inputenc}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage{comment}
+
+% Remove coyright and ACM reference of this paper
+% We should probably remove this on the real paper
+\settopmatter{printacmref=false}
+\setcopyright{none}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\pagestyle{plain}
+% --- end remove
+
+\linespread{1.5}
+
+\makeatletter
+\def\subsubsection{\@startsection{subsubsection}{3}%
+  \z@{.5\linespacing\@plus.7\linespacing}{.1\linespacing}%
+  {\normalfont\itshape}}
+\makeatother
+
+\begin{document}
+\title{Analyzing Different Sorting and Searching Algorithms}
+
+\author{Zeid Ayssa}
+\affiliation{
+    \institution{University of Texas at Austin \\ Dept. of Electrical and Computer Engineering}
+}
+\email{azeid@utexas.edu}
+
+\author{Jose Martinez Garcia-Vaso}
+\affiliation{
+    \institution{University of Texas at Austin \\ Dept. of Electrical and Computer Engineering}
+}
+\email{carlosgvaso@utexas.edu}
+
+\author{Utkarsh Vardan}
+\affiliation{
+    \institution{University of Texas at Austin \\ Dept. of Electrical and Computer Engineering}
+}
+\email{uvardan@utexas.edu}
+
+\begin{abstract}
+In this project we will analyze a variety of sorting algorithms and explore how they compare to each other in terms of performance as well as time and space complexity. Additionally, we will also show how different sorting algorithms perform with different test cases and data-set sizes. Add to that, we will explore the possibility to visualize each sorting algorithm and demonstrate how effectually different data sets from different starting point can be sorted using different algorithms.
+
+Some of the sorting algorithms that we are considering to study are:
+\begin{itemize}
+  \item Quick Sort
+  \item Merge Sort
+  \item Bubble Sort
+  \item Heap Sort
+  \item Shell Sort
+  \item Radix Sort
+  \item Tim Sort
+\end{itemize}
+
+
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+\input{sections/introduction.tex}
+
+% Temporarily commented out for the proposal
+\begin{comment}
+
+\section{Implementation}
+\input{sections/implementation.tex}
+
+\section{Evaluation}
+\input{sections/evaluation.tex}
+
+\section{Future Work}
+\input{sections/future_work.tex}
+
+\section{Conclusion}
+\input{sections/conclusion.tex}
+
+% Temporarily commented out for the proposal
+\end{comment}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
