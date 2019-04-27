@@ -130,7 +130,7 @@ def plot_data(data, filename, ignore_input=None, ignore_alg=None, norm_alg=None)
             plt.ylabel('Sorting Time Normalized by {0}'.format(' '.join(re.sub('(?!^)([A-Z][a-z]+)', r' \1',
                                                                                     norm_alg).split())))
         else:
-            plt.ylabel('Sorting Time (ms)')
+            plt.ylabel('Sorting Time ($\mathrm{\mu}$s)')
 
         plt.title("Sorting Time vs. Input Array Size\n for {0}"
                   .format(' '.join(re.sub('(?!^)([A-Z][a-z]+)', r' \1', input_key).split())))
