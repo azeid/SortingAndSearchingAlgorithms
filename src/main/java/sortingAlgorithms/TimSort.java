@@ -14,10 +14,15 @@ public class TimSort
 
    private static void mergeSort(int[] arr, int leftStartIndex, int middleIndex, int rightEndIndex)
    {
-      final int kLeftArraySize = middleIndex - leftStartIndex + 1;
+       int kLeftArraySize = middleIndex - leftStartIndex + 1;
 
       // No need for +1 since we want elements after middleIndex
-      final int kRightArraySize = rightEndIndex - middleIndex;
+       int kRightArraySize = rightEndIndex - middleIndex;
+        if( kRightArraySize < 0 ) {
+
+         kRightArraySize=0;
+         kLeftArraySize = rightEndIndex - leftStartIndex ;
+      }
       // Create two arrays of correct sizes
       int[] leftArray = new int[kLeftArraySize];
       int[] rightArray = new int[kRightArraySize];
@@ -25,17 +30,18 @@ public class TimSort
       // Copy elements into arrays
 
       // Copy left array
-      for (int i = 0; i < kLeftArraySize; ++i)
-      {
-         leftArray[i] = arr[leftStartIndex + i];
+      if(leftArray.length>0) {
+         for (int i = 0; i < kLeftArraySize; ++i) {
+            leftArray[i] = arr[leftStartIndex + i];
+         }
       }
 
       // Copy right array
-      for (int i = 0; i < kRightArraySize; ++i)
-      {
-         rightArray[i] = arr[middleIndex + i + 1];
+      if(rightArray.length>0) {
+         for (int i = 0; i < kRightArraySize; ++i) {
+            rightArray[i] = arr[middleIndex + i + 1];
+         }
       }
-
       // Now sort elements into array
       int leftArrayIndex = 0;
       int rightArrayIndex = 0;
@@ -115,8 +121,8 @@ public class TimSort
             // Start at the first sub-array and merge two sub-arrays of length size
             // where size doubles on every iteration of outer loop.
             for (int leftIndex = 0; leftIndex < arr.length; leftIndex += 2 * size) {
-               final int kMiddleIndex = leftIndex + size - 1;
-               final int kRightEndIndex = Math.min((leftIndex + 2 * size - 1), (arr.length - 1));
+                int kMiddleIndex = leftIndex + size - 1;
+                int kRightEndIndex = Math.min((leftIndex + 2 * size - 1), (arr.length - 1));
                mergeSort(arr, leftIndex, kMiddleIndex, kRightEndIndex);
             }
          }
