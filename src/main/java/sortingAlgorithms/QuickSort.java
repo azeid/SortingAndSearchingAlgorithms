@@ -85,6 +85,15 @@ public class QuickSort
 
       assertTrue(SharedFunctions.checksort(originalArrCopy, arr));
    }
+
+   @Test public void checkSortPerformance()
+   {
+      final int kArraySize = 100000;
+      final boolean kCheckCorrectness = false;
+      SharedFunctions.benchmarkSortingAlgorithm(
+            kArraySize, SharedFunctions.eSortingAlgorithm.kQuickSort,
+            kCheckCorrectness);
+   }
 }
 /*This code is contributed by Rajat Mishra */
 

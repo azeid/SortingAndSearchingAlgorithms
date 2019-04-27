@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // Reference: https://www.geeksforgeeks.org/merge-sort/
 
-class MergeSort
+public class MergeSort
 {
    // Merges two subarrays of arr[].
    // First subarray is arr[l..m]
@@ -108,6 +108,15 @@ class MergeSort
       sortArray(arr);
 
       assertTrue(SharedFunctions.checksort(originalArrCopy, arr));
+   }
+
+   @Test public void checkSortPerformance()
+   {
+      final int kArraySize = 100000;
+      final boolean kCheckCorrectness = false;
+      SharedFunctions.benchmarkSortingAlgorithm(
+            kArraySize, SharedFunctions.eSortingAlgorithm.kMergeSort,
+            kCheckCorrectness);
    }
 
 }

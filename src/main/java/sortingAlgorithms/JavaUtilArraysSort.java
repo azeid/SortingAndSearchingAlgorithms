@@ -2,6 +2,7 @@ package sortingAlgorithms;
 
 import org.junit.jupiter.api.Test;
 import shared.SharedFunctions;
+import shared.TestCasesGenerator;
 
 import java.util.Arrays;
 
@@ -72,6 +73,15 @@ public class JavaUtilArraysSort
       int[] arr = {};
       sortArray(arr);
       assertArrayEquals(new int[]{}, arr);
+   }
+
+   @Test public void checkSortPerformance()
+   {
+      final int kArraySize = 10000000;
+      final boolean kCheckCorrectness = false;
+      SharedFunctions.benchmarkSortingAlgorithm(
+            kArraySize, SharedFunctions.eSortingAlgorithm.kJavaUtilSort,
+            kCheckCorrectness);
    }
 }
 

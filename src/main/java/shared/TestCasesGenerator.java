@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class TestCasesGenerator
+public class TestCasesGenerator
 {
 
    static final String kUsage = new String("Usage: TestCasesGenerator TestCase NumberOfItems \"outputFile.txt\"");

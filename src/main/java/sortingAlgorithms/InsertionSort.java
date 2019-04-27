@@ -111,36 +111,11 @@ public class InsertionSort
 
    @Test public void checkSortPerformance()
    {
-      // TODO: fix file full path
-      final String kTestCaseFileName = "testCases/SortedInDescendingOrder_100000.txt";
-      int[] inputArray = SharedFunctions.readFromInputFile(kTestCaseFileName);
-
-      // Warm up runs
-      final int kWarmUpIterations = 3;
-      for (int i = 0; i < kWarmUpIterations; ++i)
-      {
-         int[] tempArray = new int[inputArray.length];
-         System.arraycopy(inputArray, 0, tempArray, 0, tempArray.length);
-         sortArray(tempArray);
-      }
-
-      final int kIterations = 10;
-      long totalTimeTakeInMS = 0;
-      for (int i = 0; i < kIterations; ++i)
-      {
-         int[] tempArray = new int[inputArray.length];
-         System.arraycopy(inputArray, 0, tempArray, 0, tempArray.length);
-
-         long startTimeInMS = java.lang.System.currentTimeMillis();
-         sortArray(tempArray);
-         long endTimeInMS = java.lang.System.currentTimeMillis();
-         assertTrue(SharedFunctions.checksort(inputArray, tempArray));
-         System.out.println("Elapsed Time In ms: " + (endTimeInMS - startTimeInMS));
-         totalTimeTakeInMS += (endTimeInMS - startTimeInMS);
-      }
-
-      System.out.println(kTestCaseFileName);
-      System.out.println("Average Time In ms: " + (totalTimeTakeInMS/kIterations));
+      final int kArraySize = 100000;
+      final boolean kCheckCorrectness = false;
+      SharedFunctions.benchmarkSortingAlgorithm(
+            kArraySize, SharedFunctions.eSortingAlgorithm.kInsertionSort,
+            kCheckCorrectness);
    }
 }
 

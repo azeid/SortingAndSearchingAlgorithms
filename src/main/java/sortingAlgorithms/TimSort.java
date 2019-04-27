@@ -168,4 +168,13 @@ public class TimSort
          //assertTrue(SharedFunctions.checksort(originalArrCopy, arr));
       }
    }
+
+   @Test public void checkSortPerformance()
+   {
+      final int kArraySize = 100000;
+      final boolean kCheckCorrectness = true;
+      SharedFunctions.benchmarkSortingAlgorithm(
+            kArraySize, SharedFunctions.eSortingAlgorithm.kTimSort,
+            kCheckCorrectness);
+   }
 }

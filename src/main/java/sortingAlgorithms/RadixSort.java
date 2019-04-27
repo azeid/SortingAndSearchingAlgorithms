@@ -8,7 +8,7 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class RadixSort
+public class RadixSort
 {
    // A utility function to get maximum value in arr[]
    private static int getMax(int arr[], int n)
@@ -86,5 +86,14 @@ class RadixSort
       sortArray(arr);
 
       assertTrue(SharedFunctions.checksort(originalArrCopy, arr));
+   }
+
+   @Test public void checkSortPerformance()
+   {
+      final int kArraySize = 100000;
+      final boolean kCheckCorrectness = false;
+      SharedFunctions.benchmarkSortingAlgorithm(
+            kArraySize, SharedFunctions.eSortingAlgorithm.kQuickSort,
+            kCheckCorrectness);
    }
 }
