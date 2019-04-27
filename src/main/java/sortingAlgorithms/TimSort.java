@@ -177,8 +177,8 @@ public class TimSort
 
    @Test public void checkSortPerformance()
    {
-      final int kArraySize = 100000;
-      final boolean kCheckCorrectness = true;
+      final int kArraySize = 1000000;
+      final boolean kCheckCorrectness = false;
       SharedFunctions.benchmarkSortingAlgorithm(
             kArraySize, SharedFunctions.eSortingAlgorithm.kTimSort,
             kCheckCorrectness);

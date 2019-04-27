@@ -1,80 +1,69 @@
 package sortingAlgorithms;
 
-// Reference: https://www.geeksforgeeks.org/quick-sort/
-
 import org.junit.jupiter.api.Test;
 import shared.SharedFunctions;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+// Reference: https://github.com/Code2Bits/Algorithms-in-Java/blob/master/sort/src/main/java/com/code2bits/algorithm/sort/QuickSort.java
 public class QuickSort
 {
-   /* This function takes last element as pivot,
-   places the pivot element at its correct
-   position in sorted array, and places all
-   smaller (smaller than pivot) to left of
-   pivot and all greater elements to right
-   of pivot */
-   private static int partition(int arr[], int low, int high)
+   public static void sortArray(int[] collection)
    {
-      int pivot = arr[high];
-      int i = (low-1); // index of smaller element
-      for (int j=low; j<high; j++)
-      {
-         // If current element is smaller than or
-         // equal to pivot
-         if (arr[j] <= pivot)
-         {
-            i++;
+      if (collection != null) {
+         quickSort(collection, 0, collection.length-1);
+      } else {
+         throw new IllegalArgumentException("Input paramenter for array to sort is null.");
+      }
+   }
 
-            // swap arr[i] and arr[j]
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
+   private static void quickSort(int[] collection, int firstPosition, int lastPosition)
+   {
+      if (firstPosition >= lastPosition)
+      {
+         return;
+      } else {
+         int pivotIndex = partition(collection, firstPosition, lastPosition);
+         quickSort(collection, firstPosition, pivotIndex-1);
+         quickSort(collection, pivotIndex+1, lastPosition);
+      }
+   }
+
+
+   private static int partition(int[] collection, int firstPosition, int lastPosition)
+   {
+      int pivotIndex = selectPivot(firstPosition, lastPosition);
+      swap (collection, pivotIndex, lastPosition);
+      int store = firstPosition;
+      pivotIndex = lastPosition;
+      for (int i = firstPosition; i <= lastPosition-1 ; i++) {
+         if (collection[i] <= collection[pivotIndex]) {
+            swap (collection, i, store);
+            store++;
          }
       }
-
-      // swap arr[i+1] and arr[high] (or pivot)
-      int temp = arr[i+1];
-      arr[i+1] = arr[high];
-      arr[high] = temp;
-
-      return i+1;
+      swap (collection, store, pivotIndex);
+      pivotIndex = store;
+      return pivotIndex;
    }
 
 
-   /* The main function that implements QuickSort()
-   arr[] --> Array to be sorted,
-   low --> Starting index,
-   high --> Ending index */
-   private static void sort(int arr[], int low, int high)
+   private static void swap(int[] collection, int x, int y)
    {
-      if (low < high)
-      {
-			/* pi is partitioning index, arr[pi] is
-			now at right place */
-         int pi = partition(arr, low, high);
-
-         // Recursively sort elements before
-         // partition and after partition
-         sort(arr, low, pi-1);
-         sort(arr, pi+1, high);
-      }
+      int temp = collection[x];
+      collection[x] = collection[y];
+      collection[y] = temp;
    }
 
-   public static void sortArray(int arr[])
+   private static int selectPivot(int first, int last)
    {
-      if(arr!=null && arr.length>0) {
-         final int kStartIndex = 0;
-         final int kEndIndex = arr.length - 1;
-         sort(arr, kStartIndex, kEndIndex);
-      }
+      return (first+last)/2;
    }
 
    @Test
    public void checkSortCorrectness()
    {
-      final int kSize = 100;
+      final int kSize = 100000;
       int[] arr = SharedFunctions.getRandomArray(kSize, -100, 100);
 
       int[] originalArrCopy = new int[arr.length];
@@ -88,12 +77,11 @@ public class QuickSort
 
    @Test public void checkSortPerformance()
    {
-      final int kArraySize = 100000;
+      final int kArraySize = 1000000;
       final boolean kCheckCorrectness = false;
       SharedFunctions.benchmarkSortingAlgorithm(
             kArraySize, SharedFunctions.eSortingAlgorithm.kQuickSort,
             kCheckCorrectness);
    }
 }
-/*This code is contributed by Rajat Mishra */
 

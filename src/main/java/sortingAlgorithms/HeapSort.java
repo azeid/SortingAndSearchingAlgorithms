@@ -77,7 +77,7 @@ public class HeapSort
 
    @Test public void checkSortPerformance()
    {
-      final int kArraySize = 100000;
+      final int kArraySize = 1000000;
       final boolean kCheckCorrectness = false;
       SharedFunctions.benchmarkSortingAlgorithm(
             kArraySize, SharedFunctions.eSortingAlgorithm.kHeapSort,
