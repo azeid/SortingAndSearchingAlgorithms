@@ -95,7 +95,10 @@ public class BenchmarkAllSortTestCases {
    @Setup
    public void loadData()
    {
-      inputArray = SharedFunctions.readFromInputFile(fileName);
+      String filePath = System.getProperty("user.dir");
+      filePath += "/"+fileName;
+      //System.out.println("current dir = " + filePath);
+      inputArray = SharedFunctions.readFromInputFile(filePath);
    }
 
    @Benchmark
@@ -105,7 +108,7 @@ public class BenchmarkAllSortTestCases {
       // Without this inputArray would be sorted the first time and
       // consecutive calls will be wrong.
       int[] tempArray = new int[inputArray.length];
-      System.arraycopy(tempArray, 0, inputArray, 0, inputArray.length);
+      System.arraycopy(inputArray, 0, tempArray, 0, tempArray.length);
 
       BubbleSort.sortArray(tempArray);
    }
@@ -117,7 +120,7 @@ public class BenchmarkAllSortTestCases {
       // Without this inputArray would be sorted the first time and
       // consecutive calls will be wrong.
       int[] tempArray = new int[inputArray.length];
-      System.arraycopy(tempArray, 0, inputArray, 0, inputArray.length);
+      System.arraycopy(inputArray, 0, tempArray, 0, tempArray.length);
 
       InsertionSort.sortArray(tempArray);
    }
@@ -129,7 +132,7 @@ public class BenchmarkAllSortTestCases {
       // Without this inputArray would be sorted the first time and
       // consecutive calls will be wrong.
       int[] tempArray = new int[inputArray.length];
-      System.arraycopy(tempArray, 0, inputArray, 0, inputArray.length);
+      System.arraycopy(inputArray, 0, tempArray, 0, tempArray.length);
 
       ShellSort.sortArray(tempArray);
    }
@@ -141,7 +144,7 @@ public class BenchmarkAllSortTestCases {
       // Without this inputArray would be sorted the first time and
       // consecutive calls will be wrong.
       int[] tempArray = new int[inputArray.length];
-      System.arraycopy(tempArray, 0, inputArray, 0, inputArray.length);
+      System.arraycopy(inputArray, 0, tempArray, 0, tempArray.length);
 
       ShellSort.sortArray(tempArray);
    }
@@ -153,7 +156,7 @@ public class BenchmarkAllSortTestCases {
       // Without this inputArray would be sorted the first time and
       // consecutive calls will be wrong.
       int[] tempArray = new int[inputArray.length];
-      System.arraycopy(tempArray, 0, inputArray, 0, inputArray.length);
+      System.arraycopy(inputArray, 0, tempArray, 0, tempArray.length);
 
       ShellSort.sortArray(tempArray);
    }
@@ -165,7 +168,7 @@ public class BenchmarkAllSortTestCases {
       // Without this inputArray would be sorted the first time and
       // consecutive calls will be wrong.
       int[] tempArray = new int[inputArray.length];
-      System.arraycopy(tempArray, 0, inputArray, 0, inputArray.length);
+      System.arraycopy(inputArray, 0, tempArray, 0, tempArray.length);
 
       ShellSort.sortArray(tempArray);
    }
@@ -177,7 +180,7 @@ public class BenchmarkAllSortTestCases {
       // Without this inputArray would be sorted the first time and
       // consecutive calls will be wrong.
       int[] tempArray = new int[inputArray.length];
-      System.arraycopy(tempArray, 0, inputArray, 0, inputArray.length);
+      System.arraycopy(inputArray, 0, tempArray, 0, tempArray.length);
 
       ShellSort.sortArray(tempArray);
    }
@@ -189,7 +192,7 @@ public class BenchmarkAllSortTestCases {
       // Without this inputArray would be sorted the first time and
       // consecutive calls will be wrong.
       int[] tempArray = new int[inputArray.length];
-      System.arraycopy(tempArray, 0, inputArray, 0, inputArray.length);
+      System.arraycopy(inputArray, 0, tempArray, 0, tempArray.length);
 
       ShellSort.sortArray(tempArray);
    }
@@ -201,7 +204,7 @@ public class BenchmarkAllSortTestCases {
       // Without this inputArray would be sorted the first time and
       // consecutive calls will be wrong.
       int[] tempArray = new int[inputArray.length];
-      System.arraycopy(tempArray, 0, inputArray, 0, inputArray.length);
+      System.arraycopy(inputArray, 0, tempArray, 0, tempArray.length);
 
       JavaUtilArraysSort.sortArray(tempArray);
    }

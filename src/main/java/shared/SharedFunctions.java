@@ -2,6 +2,7 @@ package shared;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.nio.file.Files;
@@ -101,20 +102,21 @@ public class SharedFunctions
 
    public static int[] readFromInputFile(String fileName)
    {
-      int[] arr = null;
-
+      BufferedReader reader;
       try (Stream<String> stream = Files.lines(Paths.get(fileName)))
       {
          // This remove data from stream object into fileLines
          final List<String> fileLines = stream.collect(Collectors.toList());
 
          final int kSize = fileLines.size();
-         arr = new int[kSize];
+         int arr[] = new int[kSize];
 
          for (int lineIndex = 0; lineIndex < kSize; ++lineIndex)
          {
             arr[lineIndex] = Integer.parseInt(fileLines.get(lineIndex));
          }
+
+         return arr;
 
       } catch (Exception e)
       {
@@ -122,7 +124,7 @@ public class SharedFunctions
          System.exit(-1);
       }
 
-      return arr;
+      return null;
    }
 
    public static void writeToOutputFile(int arr[], String fileName)
