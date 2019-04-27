@@ -1,0 +1,241 @@
+The sorting problem is one of the fundamental problems in Computer Science. It consists of obtaining a permutation of a sequence of numbers sorted in non-decreasing order. The problem is defined as follows\cite{clrs2009}:
+
+\textbf{Input}: A sequence of $n$ numbers $\langle a_0, a_1, ..., a_{n-1} \rangle$.
+
+\textbf{Output}: A permutation of the input sequence $\langle a_0', a_1', ..., a_{n-1}' \rangle$ such that $a_0' \leq a_1' \leq ... \leq a_{n-1}'$.
+
+Over the times, there have been many algorithms developed to solve this problem. These algorithms employ a variety techniques, data structures and mathematical properties, which lead to some algorithms performing better than others for different input types. In our research, we focused specifically on the problem of sorting an array of integers, and we studied the performance of nine sorting algorithms when presented with multiple inputs of different sizes and makeups. We compared the performance of the following algorithms:
+
+\begin{itemize}
+  \item Insertion sort.
+  \item Quicksort.
+  \item Java Collections Framework Arrays sort implementation.
+  \item Mergesort.
+  \item Heapsort.
+  \item Bubble Sort.
+  \item Shell Sort.
+  \item Radix Sort.
+  \item Timsort.
+\end{itemize}
+
+In the next subsections, we will introduce the previous algorithms, and we will talk about their theoretical time and space complexities. We will also go over their best, average and worst case inputs.
+
+\subsection{Insertion Sort}
+
+The insertion sort algorithm sorts the the array of integers in-place in a similar way as we would sort a had of cards. It divides the array in a left and right sides, with the goal of ending with all the numbers sorted in the left side and no numbers in the right side. We start with all the numbers in the right side, and we add them one by one to the left side in ascending order. To make sure the numbers are inserted in the correct place, the numbers are compared from right to left with the numbers already in the left side of the array\cite{clrs2009}.
+
+Insertion performs single pass in the collection of data. All the data on the left side of the item currently been evaluated is know to be sorted and all the data to the right is considered to be unsorted. \textit{Figure \ref{fig:insertionsort_ex}} shows insertion sort in action. We start with an unsorted array (see \textit{Figure \ref{fig:insertionsort_ex} (a)}). The first item in the collection, since there is nothing to the left of $6$, it is considered to be sorted. Since $4$ is less than $6$, we make a swap, and $4$ and $6$ are considered to be sorted. The rest of the numbers are unsorted. Since $5$ is less than $6$, we perform a swap between $5$ and $6$. We continue this operation for $9$, since $9$ is greater than $6$, no swap is performed. Since $7$ is less than $9$, we swap $7$ and $9$. Finally, since $8$ is less than $9$, we again swap $8$ and $9$. In a single pass, we have sorted the entire array of data using the insertion sort (see \textit{Figure \ref{fig:insertionsort_ex} (b)}).
+
+\textit{Figure \ref{fig:insertionsort}} shows the time and space complexities of insertion sort.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    6 & 4 & 5 & 5 & 9 & 7 & 8 \\
+    \hline
+    \multicolumn{7}{c}{(a)} \\
+    \end{tabular}
+    \quad\quad
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    4 & 5 & 5 & 6 & 7 & 8 & 9 \\
+    \hline
+    \multicolumn{7}{c}{(b)} \\
+    \end{tabular}
+    
+    \caption{Insertion sort visualization. (a) shows the input array. (b) shows the array after one pass of insertion sort.}
+    \label{fig:insertionsort_ex}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{l|l}
+    \multicolumn{2}{l}{\textbf{Time Complexity}} \\
+    \hline
+    Best Case    & $\Theta(n)$ \\
+    Average Case & $\Theta(n^2)$ \\
+    Worst Case   & $\Theta(n^2)$ \\
+    \end{tabular}
+    \quad\quad
+    \begin{tabular}{l|l}
+    \multicolumn{2}{l}{\textbf{Space Complexity}} \\
+    \hline
+    Worst Case   & $O(1)$ \\
+    \end{tabular}
+    
+    \caption{Insertion sort time\cite{clrs2009} and space complexities\textbf{[needs citation]}.}
+    \label{fig:insertionsort}
+\end{figure}
+
+\subsection{Quicksort}
+
+Quick sort is a divide and conquer algorithm. It’s also one of the most commonly used general purpose sorting algorithm in computer science. Since its divide and conquer algorithm, we will be dividing the data into smaller sets. In quick sort the arrays are not necessarily split in half, rather a pivot value is picked based on the rules or a heuristic. Once a pivot value is picked, all the items in the array smaller than the pivot are placed at the left side of pivot, and everything to the right of the pivot are larger than the pivot. This pivot and partition operation is performed repeatedly on left and right side of partitions until all the items are sorted. 
+
+In the unsorted array of data shown in \textit{Figure \ref{fig:quicksort_ex} (a)}, we choose $5$ as the pivot. All the entries less than $5$ will be moved to the left of $5$, and values greater than $5$ will be moved to the right of $5$. Therefore, $4$ and $8$ are swapped resulting in \textit{Figure \ref{fig:insertionsort_ex} (b)}. Next we choose $2$ as the next partition, all the values to the left of $2$ are larger, and values to the right are smaller. Therefore, we need to pull $2$ out of the array, and place all the values around in their appropriate location as shown in \textit{Figure \ref{fig:quicksort_ex} (c)}. If we pick $3$ as pivot, entries to the left of $3$ are smaller. Therefore, it is sorted. Similarly, we repeatedly pick to pivot to the right side of $5$ until all elements are sorted as displayed in \textit{Figure \ref{fig:quicksort_ex} (d)}.
+
+Figure \ref{fig:quicksort} shows the time and space complexities of insertion sort.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    3 & 8 & 2 & 1 & \cellcolor{lightgray}5 & 4 & 6 & 7 \\
+    \hline
+    \multicolumn{7}{c}{(a)} \\
+    \end{tabular}
+    \,
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    3 & 4 & \cellcolor{lightgray}2 & 1 & 5 & 8 & 6 & 7 \\
+    \hline
+    \multicolumn{7}{c}{(b)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    1 & 2 & \cellcolor{lightgray}3 & 4 & 5 & 7 & 6 & 8 \\
+    \hline
+    \multicolumn{7}{c}{(c)} \\
+    \end{tabular}
+    \,
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+    \hline
+    \multicolumn{7}{c}{(d)} \\
+    \end{tabular}
+    
+    \caption{Quicksort visualization. (a) shows the input array. (b) shows the array after using $5$ as the pivot. (c) shows the array after uisng 3 as the pivot. (d) shows the sorted array.}
+    \label{fig:quicksort_ex}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{l|l}
+    \multicolumn{2}{l}{\textbf{Time Complexity}} \\
+    \hline
+    Best Case    & $\Theta(n \, \lg n)$ \\
+    Average Case & $\Theta(n \, \lg n)$ \\
+    Worst Case   & $\Theta(n^2)$ \\
+    \end{tabular}
+    \quad\quad
+    \begin{tabular}{l|l}
+    \multicolumn{2}{l}{\textbf{Space Complexity}} \\
+    \hline
+    Worst Case   & $O(\lg n)$
+    \end{tabular}
+    
+    \caption{Quicksort time\cite{clrs2009} and space complexities\textbf{[needs citation]}.}
+    \label{fig:quicksort}
+\end{figure}
+
+\subsection{Mergesort}
+
+Merge sort works by recursively splitting the data in half. For example, an array of $10$ items would be split in the middle into two arrays of $5$ items each. The splitting continues until each array has only one item in it. Since each array has only one item in it, that split array is known to be sorted. At this point, the arrays are reconstructed, but the values are put together in sorted order. After each reconstruction, the sorted array doubles in size, and this procedure continues until all the arrays are reconstructed and fully sorted.
+
+The arrays are recursively split in half. First, the initial array (see \textit{Figure \ref{fig:mergesort_ex} (a)}) is split into $2$ sub-arrays of $4$ entries each as shown in \textit{Figure \ref{fig:mergesort_ex} (b)}. Next, the sub-arrays are split in arrays of $2$ entries each as shown in \textit{Figure \ref{fig:mergesort_ex} (c)}. Then, the resulting sub-arrays are split into $8$ sub-arrays of $1$ entry each as shown in \textit{Figure \ref{fig:mergesort_ex} (d)}. Because there is only one item in the sub-arrays shown in \textit{Figure \ref{fig:mergesort_ex} (d)}, the entries in the sub-arrays are sorted within their sub-array. For the reconstruction phase, we join each single entry sub-array back to sub-arrays of $2$ entries each by sorting them. Then, $4$ and $9$ are reconstructed into a sub-array as they are already sorted. $3$ and $2$ are reconstructed into an array with $2$ and $3$ in sorted order. $6$ and $5$ are reconstructed as $5$ and $6$. $7$ and $8$ are reconstructed in the same order. The result is shown in \textit{Figure \ref{fig:mergesort_ex} (e)}. Similarly, we reconstruct the resulting sub-arrays of $2$ entries each back to $2$ sub-arrays of $4$ entries each in sorted order, which is shown in \textit{Figure \ref{fig:mergesort_ex} (f)}. In the final reconstruction step, the $2$ remaining sub-arrays are merged into a single sorted array as shown in \textit{Figure \ref{fig:mergesort_ex} (g)}.
+
+Figure \ref{fig:mergesort} shows the time and space complexities of Mergesort.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    4 & 9 & 3 & 2 & 6 & 5 & 7 & 8 \\
+    \hline
+    \multicolumn{7}{c}{(a)} \\
+    \end{tabular}
+    \,
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    4 & 9 & 3 & 2 & \cellcolor{lightgray}6 & \cellcolor{lightgray}5 & \cellcolor{lightgray}7 & \cellcolor{lightgray}8 \\
+    \hline
+    \multicolumn{7}{c}{(b)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    4 & 9 & \cellcolor{lightgray}3 & \cellcolor{lightgray}2 & 6 & 5 & \cellcolor{lightgray}7 & \cellcolor{lightgray}8 \\
+    \hline
+    \multicolumn{7}{c}{(c)} \\
+    \end{tabular}
+    \,
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    4 & \cellcolor{lightgray}9 & 3 & \cellcolor{lightgray}2 & 6 & \cellcolor{lightgray}5 & 7 & \cellcolor{lightgray}8 \\
+    \hline
+    \multicolumn{7}{c}{(d)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    4 & 9 & \cellcolor{lightgray}2 & \cellcolor{lightgray}3 & 5 & 6 & \cellcolor{lightgray}7 & \cellcolor{lightgray}8 \\
+    \hline
+    \multicolumn{7}{c}{(e)} \\
+    \end{tabular}
+    \,
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    2 & 3 & 4 & 9 & \cellcolor{lightgray}5 & \cellcolor{lightgray}6 & \cellcolor{lightgray}7 & \cellcolor{lightgray}8 \\
+    \hline
+    \multicolumn{7}{c}{(f)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+    \hline
+    \multicolumn{7}{c}{(g)} \\
+    \end{tabular}
+    
+    \caption{Mergesort visualization. (a) shows the input array. (b), (c) and (d) show how mergesort splits the initial array into sub-arrays. (e), (f) and (g) shows how mergesort joins back the sub-arrays in sorted order.}
+    \label{fig:mergesort_ex}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{l|l}
+    \multicolumn{2}{l}{\textbf{Time Complexity}} \\
+    \hline
+    Best Case    & $\Theta(n \, \lg n)$ \\
+    Average Case & $\Theta(n \, \lg n)$ \\
+    Worst Case   & $\Theta(n \, \lg n)$ \\
+    \end{tabular}
+    \quad\quad
+    \begin{tabular}{l|l}
+    \multicolumn{2}{l}{\textbf{Space Complexity}} \\
+    \hline
+    Worst Case   & $O(n)$
+    \end{tabular}
+    
+    \caption{Mergesort time\cite{clrs2009} and space complexities\textbf{[needs citation]}.}
+    \label{fig:mergesort}
+\end{figure}
+
+\subsection{Heapsort}
+
+
+% Example alg:
+
+\begin{figure}[ht]
+    
+    \begin{algorithmic}
+    \STATE $l \gets $all free men
+    \WHILE{some man $m$ in $l$}
+        \STATE $w \gets$ woman on $m$'s list to whom $m$ has not yet proposed
+        \IF{$w$ is free}
+            \STATE assign $m$ and $w$ (they are now engaged)
+        \ELSE
+            \IF{$w$ prefers $m$ to her fianc\'e $m\prime$} 
+                \STATE assign $m$ and $w$, $m\prime$ is now free
+            \ELSE
+                \STATE $w$ rejects $m$, so $m$ is still free
+            \ENDIF
+        \ENDIF
+    \ENDWHILE
+    \end{algorithmic}
+
+    \caption{Gale-Shapley Algorithm as described by Gusfield et al.}
+    \label{fig:my_label}
+\end{figure}
