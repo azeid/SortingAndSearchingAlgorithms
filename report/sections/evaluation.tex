@@ -13,7 +13,7 @@ TODO
 
 We ran the benchmark suite in machine with an AMD Ryzen 1700 8-core 16-threads @ 3.6Ghz and 16Gb of DDR4 RAM @ 3,200Mhz. As a baseline we decided to run all the tests in our serial implementation of Gale-Shapley. Results are shows in Table \ref{tab:serial-gale-shapley}. In every cell the amount of milliseconds to complete an operation of the algorithm, i.e. get a result, and the margin of error is specified and a confidence interval of 99\%. 
 
-\begin{table}[h]
+\begin{table}[!ht]
     \centering
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -30,7 +30,7 @@ We ran the benchmark suite in machine with an AMD Ryzen 1700 8-core 16-threads @
 We then followed by running our parallel version of Gale-Shapley. Results are shown in Table \ref{tab:parallel-gale-shapley}.
 
 
-\begin{table}[h]
+\begin{table}[!ht]
     \centering
 \begin{tabular}{|l|l|l|l|}
 \hline
@@ -46,7 +46,7 @@ We then followed by running our parallel version of Gale-Shapley. Results are sh
 
 Finally we ran our approach to divide and conquer in parallel. Results are shown in Table \ref{tab:parallel-tseng-lee}
 
-\begin{table}[h]
+\begin{table}[!ht]
     \centering
 \begin{tabular}{|l|l|l|l|}
 \hline
