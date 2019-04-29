@@ -20,6 +20,7 @@ Over the times, there have been many algorithms developed to solve this problem.
 
 In the next subsections, we will introduce the previous algorithms, and we will talk about their theoretical time and space complexities. We will also go over their best, average and worst case inputs.
 
+
 \subsection{Insertion Sort}
 
 The insertion sort algorithm sorts the the array of integers in-place in a similar way as we would sort a had of cards. It divides the array in a left and right sides, with the goal of ending with all the numbers sorted in the left side and no numbers in the right side. We start with all the numbers in the right side, and we add them one by one to the left side in ascending order. To make sure the numbers are inserted in the correct place, the numbers are compared from right to left with the numbers already in the left side of the array\cite{clrs2009}.
@@ -51,7 +52,7 @@ Insertion performs single pass in the collection of data. All the data on the le
 \begin{figure}[!ht]
     \centering
     \begin{tabular}{l|l}
-    \multicolumn{2}{l}{\textbf{Time Complexity}} \\
+    \multicolumn{2}{c}{\textbf{Time Complexity}} \\
     \hline
     Best Case    & $\Theta(n)$ \\
     Average Case & $\Theta(n^2)$ \\
@@ -59,7 +60,7 @@ Insertion performs single pass in the collection of data. All the data on the le
     \end{tabular}
     \quad\quad
     \begin{tabular}{l|l}
-    \multicolumn{2}{l}{\textbf{Space Complexity}} \\
+    \multicolumn{2}{c}{\textbf{Space Complexity}} \\
     \hline
     Worst Case   & $O(1)$ \\
     \end{tabular}
@@ -68,13 +69,14 @@ Insertion performs single pass in the collection of data. All the data on the le
     \label{fig:insertionsort}
 \end{figure}
 
+
 \subsection{Quicksort}
 
-Quick sort is a divide and conquer algorithm. It’s also one of the most commonly used general purpose sorting algorithm in computer science. Since its divide and conquer algorithm, we will be dividing the data into smaller sets. In quick sort the arrays are not necessarily split in half, rather a pivot value is picked based on the rules or a heuristic. Once a pivot value is picked, all the items in the array smaller than the pivot are placed at the left side of pivot, and everything to the right of the pivot are larger than the pivot. This pivot and partition operation is performed repeatedly on left and right side of partitions until all the items are sorted. 
+Quick sort is a divide and conquer algorithm. It’s also one of the most commonly used general purpose sorting algorithm in computer science. Since it is a divide and conquer algorithm, we will be dividing the data into smaller sets. In quick sort, the arrays are not necessarily split in half, rather a pivot value is picked based on the rules or a heuristic. Once a pivot value is picked, all the items in the array smaller than the pivot are placed at the left side of pivot, and entries to the right of the pivot are larger than the pivot. This pivot and partition operation is performed repeatedly on left and right side of partitions until all the items are sorted. 
 
 In the unsorted array of data shown in \textit{Figure \ref{fig:quicksort_ex} (a)}, we choose $5$ as the pivot. All the entries less than $5$ will be moved to the left of $5$, and values greater than $5$ will be moved to the right of $5$. Therefore, $4$ and $8$ are swapped resulting in \textit{Figure \ref{fig:insertionsort_ex} (b)}. Next we choose $2$ as the next partition, all the values to the left of $2$ are larger, and values to the right are smaller. Therefore, we need to pull $2$ out of the array, and place all the values around in their appropriate location as shown in \textit{Figure \ref{fig:quicksort_ex} (c)}. If we pick $3$ as pivot, entries to the left of $3$ are smaller. Therefore, it is sorted. Similarly, we repeatedly pick to pivot to the right side of $5$ until all elements are sorted as displayed in \textit{Figure \ref{fig:quicksort_ex} (d)}.
 
-Figure \ref{fig:quicksort} shows the time and space complexities of insertion sort.
+\textbf{Figure \ref{fig:quicksort}} shows the time and space complexities of insertion sort.
 
 \begin{figure}[!ht]
     \centering
@@ -82,28 +84,28 @@ Figure \ref{fig:quicksort} shows the time and space complexities of insertion so
     \hline
     3 & 8 & 2 & 1 & \cellcolor{lightgray}5 & 4 & 6 & 7 \\
     \hline
-    \multicolumn{7}{c}{(a)} \\
+    \multicolumn{8}{c}{(a)} \\
     \end{tabular}
     \,
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
     \hline
     3 & 4 & \cellcolor{lightgray}2 & 1 & 5 & 8 & 6 & 7 \\
     \hline
-    \multicolumn{7}{c}{(b)} \\
+    \multicolumn{8}{c}{(b)} \\
     \end{tabular}
     \break
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
     \hline
     1 & 2 & \cellcolor{lightgray}3 & 4 & 5 & 7 & 6 & 8 \\
     \hline
-    \multicolumn{7}{c}{(c)} \\
+    \multicolumn{8}{c}{(c)} \\
     \end{tabular}
     \,
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
     \hline
     1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
     \hline
-    \multicolumn{7}{c}{(d)} \\
+    \multicolumn{8}{c}{(d)} \\
     \end{tabular}
     
     \caption{Quicksort visualization. (a) shows the input array. (b) shows the array after using $5$ as the pivot. (c) shows the array after uisng 3 as the pivot. (d) shows the sorted array.}
@@ -113,7 +115,7 @@ Figure \ref{fig:quicksort} shows the time and space complexities of insertion so
 \begin{figure}[!ht]
     \centering
     \begin{tabular}{l|l}
-    \multicolumn{2}{l}{\textbf{Time Complexity}} \\
+    \multicolumn{2}{c}{\textbf{Time Complexity}} \\
     \hline
     Best Case    & $\Theta(n \, \lg n)$ \\
     Average Case & $\Theta(n \, \lg n)$ \\
@@ -121,7 +123,7 @@ Figure \ref{fig:quicksort} shows the time and space complexities of insertion so
     \end{tabular}
     \quad\quad
     \begin{tabular}{l|l}
-    \multicolumn{2}{l}{\textbf{Space Complexity}} \\
+    \multicolumn{2}{c}{\textbf{Space Complexity}} \\
     \hline
     Worst Case   & $O(\lg n)$
     \end{tabular}
@@ -130,13 +132,14 @@ Figure \ref{fig:quicksort} shows the time and space complexities of insertion so
     \label{fig:quicksort}
 \end{figure}
 
+
 \subsection{Mergesort}
 
-Merge sort works by recursively splitting the data in half. For example, an array of $10$ items would be split in the middle into two arrays of $5$ items each. The splitting continues until each array has only one item in it. Since each array has only one item in it, that split array is known to be sorted. At this point, the arrays are reconstructed, but the values are put together in sorted order. After each reconstruction, the sorted array doubles in size, and this procedure continues until all the arrays are reconstructed and fully sorted.
+Merge sort works by recursively splitting the data in half. For example, an array of $10$ items would be split in the middle into two sub-arrays of $5$ items each. The splitting continues until each sub-array has only one item in it. Since each sub-array has only one item in it, that sub-array is known to be sorted. At this point, the sub-arrays are merged, but the values are put together in sorted order. After each merger, the sorted sub-array doubles in size, and this procedure continues until all the sub-arrays are merged and fully sorted.
 
-The arrays are recursively split in half. First, the initial array (see \textit{Figure \ref{fig:mergesort_ex} (a)}) is split into $2$ sub-arrays of $4$ entries each as shown in \textit{Figure \ref{fig:mergesort_ex} (b)}. Next, the sub-arrays are split in arrays of $2$ entries each as shown in \textit{Figure \ref{fig:mergesort_ex} (c)}. Then, the resulting sub-arrays are split into $8$ sub-arrays of $1$ entry each as shown in \textit{Figure \ref{fig:mergesort_ex} (d)}. Because there is only one item in the sub-arrays shown in \textit{Figure \ref{fig:mergesort_ex} (d)}, the entries in the sub-arrays are sorted within their sub-array. For the reconstruction phase, we join each single entry sub-array back to sub-arrays of $2$ entries each by sorting them. Then, $4$ and $9$ are reconstructed into a sub-array as they are already sorted. $3$ and $2$ are reconstructed into an array with $2$ and $3$ in sorted order. $6$ and $5$ are reconstructed as $5$ and $6$. $7$ and $8$ are reconstructed in the same order. The result is shown in \textit{Figure \ref{fig:mergesort_ex} (e)}. Similarly, we reconstruct the resulting sub-arrays of $2$ entries each back to $2$ sub-arrays of $4$ entries each in sorted order, which is shown in \textit{Figure \ref{fig:mergesort_ex} (f)}. In the final reconstruction step, the $2$ remaining sub-arrays are merged into a single sorted array as shown in \textit{Figure \ref{fig:mergesort_ex} (g)}.
+Initially, the arrays are recursively split in half. First, the initial array (see \textit{Figure \ref{fig:mergesort_ex} (a)}) is split into $2$ sub-arrays of $4$ entries each as shown in \textit{Figure \ref{fig:mergesort_ex} (b)}. Next, the sub-arrays are split in arrays of $2$ entries each as shown in \textit{Figure \ref{fig:mergesort_ex} (c)}. Then, the resulting sub-arrays are split into $8$ sub-arrays of $1$ entry each as shown in \textit{Figure \ref{fig:mergesort_ex} (d)}. Because there is only one item in the sub-arrays shown in \textit{Figure \ref{fig:mergesort_ex} (d)}, the entries in the sub-arrays are sorted within their sub-array. For the reconstruction phase, we merge each single entry sub-array back to sub-arrays of $2$ entries each by sorting them. Then, $4$ and $9$ are reconstructed into a sub-array as they are already sorted. $3$ and $2$ are reconstructed into an array with $2$ and $3$ in sorted order. $6$ and $5$ are reconstructed as $5$ and $6$. $7$ and $8$ are reconstructed in the same order. The result is shown in \textit{Figure \ref{fig:mergesort_ex} (e)}. Similarly, we merge the resulting sub-arrays of $2$ entries each back to $2$ sub-arrays of $4$ entries each in sorted order, which is shown in \textit{Figure \ref{fig:mergesort_ex} (f)}. In the final reconstruction step, the $2$ remaining sub-arrays are merged into a single sorted array as shown in \textit{Figure \ref{fig:mergesort_ex} (g)}.
 
-Figure \ref{fig:mergesort} shows the time and space complexities of Mergesort.
+\textit{Figure \ref{fig:mergesort}} shows the time and space complexities of Mergesort.
 
 \begin{figure}[!ht]
     \centering
@@ -144,59 +147,59 @@ Figure \ref{fig:mergesort} shows the time and space complexities of Mergesort.
     \hline
     4 & 9 & 3 & 2 & 6 & 5 & 7 & 8 \\
     \hline
-    \multicolumn{7}{c}{(a)} \\
+    \multicolumn{8}{c}{(a)} \\
     \end{tabular}
     \,
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
     \hline
     4 & 9 & 3 & 2 & \cellcolor{lightgray}6 & \cellcolor{lightgray}5 & \cellcolor{lightgray}7 & \cellcolor{lightgray}8 \\
     \hline
-    \multicolumn{7}{c}{(b)} \\
+    \multicolumn{8}{c}{(b)} \\
     \end{tabular}
     \break
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
     \hline
     4 & 9 & \cellcolor{lightgray}3 & \cellcolor{lightgray}2 & 6 & 5 & \cellcolor{lightgray}7 & \cellcolor{lightgray}8 \\
     \hline
-    \multicolumn{7}{c}{(c)} \\
+    \multicolumn{8}{c}{(c)} \\
     \end{tabular}
     \,
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
     \hline
     4 & \cellcolor{lightgray}9 & 3 & \cellcolor{lightgray}2 & 6 & \cellcolor{lightgray}5 & 7 & \cellcolor{lightgray}8 \\
     \hline
-    \multicolumn{7}{c}{(d)} \\
+    \multicolumn{8}{c}{(d)} \\
     \end{tabular}
     \break
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
     \hline
     4 & 9 & \cellcolor{lightgray}2 & \cellcolor{lightgray}3 & 5 & 6 & \cellcolor{lightgray}7 & \cellcolor{lightgray}8 \\
     \hline
-    \multicolumn{7}{c}{(e)} \\
+    \multicolumn{8}{c}{(e)} \\
     \end{tabular}
     \,
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
     \hline
     2 & 3 & 4 & 9 & \cellcolor{lightgray}5 & \cellcolor{lightgray}6 & \cellcolor{lightgray}7 & \cellcolor{lightgray}8 \\
     \hline
-    \multicolumn{7}{c}{(f)} \\
+    \multicolumn{8}{c}{(f)} \\
     \end{tabular}
     \break
     \begin{tabular}{|c|c|c|c|c|c|c|c|}
     \hline
     2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
     \hline
-    \multicolumn{7}{c}{(g)} \\
+    \multicolumn{8}{c}{(g)} \\
     \end{tabular}
     
-    \caption{Mergesort visualization. (a) shows the input array. (b), (c) and (d) show how mergesort splits the initial array into sub-arrays. (e), (f) and (g) shows how mergesort joins back the sub-arrays in sorted order.}
+    \caption{Mergesort visualization. (a) shows the input array. (b), (c) and (d) show how mergesort splits the initial array into sub-arrays. Different sub-arrays are distinguished by the different cell backgrounds. (e), (f) and (g) shows how mergesort joins back the sub-arrays in sorted order.}
     \label{fig:mergesort_ex}
 \end{figure}
 
 \begin{figure}[!ht]
     \centering
     \begin{tabular}{l|l}
-    \multicolumn{2}{l}{\textbf{Time Complexity}} \\
+    \multicolumn{2}{c}{\textbf{Time Complexity}} \\
     \hline
     Best Case    & $\Theta(n \, \lg n)$ \\
     Average Case & $\Theta(n \, \lg n)$ \\
@@ -204,7 +207,7 @@ Figure \ref{fig:mergesort} shows the time and space complexities of Mergesort.
     \end{tabular}
     \quad\quad
     \begin{tabular}{l|l}
-    \multicolumn{2}{l}{\textbf{Space Complexity}} \\
+    \multicolumn{2}{c}{\textbf{Space Complexity}} \\
     \hline
     Worst Case   & $O(n)$
     \end{tabular}
@@ -213,29 +216,403 @@ Figure \ref{fig:mergesort} shows the time and space complexities of Mergesort.
     \label{fig:mergesort}
 \end{figure}
 
+
 \subsection{Heapsort}
 
+Heapsort is comparison based sorting technique based on binary heap data structure. It is similar to selection sort in terms of finding the maximum element, and placing the maximum element in the end. This process is repeated for the remaining elements in an array. 
 
-% Example alg:
+Initially, heap data structure is created using a min-heap or max-heap for the unsorted list of elements. The first element (root node) of the heap is either largest or smallest depending if it is a min or max-heap. We take out first element of the heap, and we place it at the end of the array. Then we reduce the heap size to keep the sorted element outside of the heap. We again make the heap using the remaining elements, and we pick the first element of the heap store in the end of the array. This process is repeated until we have the array completely sorted. 
 
-\begin{figure}[ht]
+Consider the example shown in \textit{Figure \ref{fig:heapsort_ex}}, where we use a max-heap. After building the max-heap, we get the array shown in \textit{Figure \ref{fig:heapsort_ex}(b)}. Since $9$ is the largest element (root node of the heap), it is removed from the heap, and it is swapped with the last entry of the array as shown in \textit{(c)}. The size of the heap is reduced by one, which is shown by graying out the entries that are no longer part of the heap. Rebuilding the max-heap with the remaining entries, we obtain the array shown in \textit{(d)}. Since $6$ is the root of the heap, it is swapped with the last element of the heap, and it is removed from the heap by reducing its size by one (see \textit{(e)}). \textit{(f)} shows the result of rebuilding the max-heap, and \textit{(g)} shows the result of removing the root node of the heap. Continuing this process, we reach a fully sorted array as shown in \textit{Figure \ref{fig:heapsort_ex} (j)}.
+
+\textit{Figure \ref{fig:heapsort}} shows the time and space complexities of Heapsort.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    5 & 9 & 4 & 6 & 3 \\
+    \hline
+    \multicolumn{5}{c}{(a)} \\
+    \end{tabular}
+    \quad\quad\quad
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    9 & 6 & 4 & 5 & 3 \\
+    \hline
+    \multicolumn{5}{c}{(b)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    3 & 6 & 4 & 5 & \cellcolor{lightgray}9 \\
+    \hline
+    \multicolumn{5}{c}{(c)} \\
+    \end{tabular}
+    \quad\quad\quad
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    6 & 5 & 4 & 3 & \cellcolor{lightgray}9 \\
+    \hline
+    \multicolumn{5}{c}{(d)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    3 & 5 & 4 & \cellcolor{lightgray}6 & \cellcolor{lightgray}9 \\
+    \hline
+    \multicolumn{5}{c}{(e)} \\
+    \end{tabular}
+    \quad\quad\quad
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    5 & 4 & 3 & \cellcolor{lightgray}6 & \cellcolor{lightgray}9 \\
+    \hline
+    \multicolumn{5}{c}{(f)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    3 & 4 & \cellcolor{lightgray}5 & \cellcolor{lightgray}6 & \cellcolor{lightgray}9 \\
+    \hline
+    \multicolumn{5}{c}{(g)} \\
+    \end{tabular}
+    \quad\quad\quad
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    4 & 3 & \cellcolor{lightgray}5 & \cellcolor{lightgray}6 & \cellcolor{lightgray}9 \\
+    \hline
+    \multicolumn{5}{c}{(h)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    3 & \cellcolor{lightgray}4 & \cellcolor{lightgray}5 & \cellcolor{lightgray}6 & \cellcolor{lightgray}9 \\
+    \hline
+    \multicolumn{5}{c}{(i)} \\
+    \end{tabular}
+    \quad\quad\quad
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \cellcolor{lightgray}3 & \cellcolor{lightgray}4 & \cellcolor{lightgray}5 & \cellcolor{lightgray}6 & \cellcolor{lightgray}9 \\
+    \hline
+    \multicolumn{5}{c}{(j)} \\
+    \end{tabular}
     
-    \begin{algorithmic}
-    \STATE $l \gets $all free men
-    \WHILE{some man $m$ in $l$}
-        \STATE $w \gets$ woman on $m$'s list to whom $m$ has not yet proposed
-        \IF{$w$ is free}
-            \STATE assign $m$ and $w$ (they are now engaged)
-        \ELSE
-            \IF{$w$ prefers $m$ to her fianc\'e $m\prime$} 
-                \STATE assign $m$ and $w$, $m\prime$ is now free
-            \ELSE
-                \STATE $w$ rejects $m$, so $m$ is still free
-            \ENDIF
-        \ENDIF
-    \ENDWHILE
-    \end{algorithmic}
+    \caption{Heapsort visualization. (a) shows the input array. (b),  shows how initial array is made into a max-heap. In (c), the root node is swapped with the last element of the array, and the heap size is reduced by one. The elements in the heap are in white, while the elements outside the heap are greyed out. The previous steps are repeated from (d) to (j), until a fully sorted array is produced as shown in (j)}
+    \label{fig:heapsort_ex}
+\end{figure}
 
-    \caption{Gale-Shapley Algorithm as described by Gusfield et al.}
-    \label{fig:my_label}
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{l|l}
+    \multicolumn{2}{c}{\textbf{Time Complexity}} \\
+    \hline
+    Best Case    & $\Theta(n \, \lg n)$ \\
+    Average Case & $\Theta(n \, \lg n)$ \\
+    Worst Case   & $\Theta(n \, \lg n)$ \\
+    \end{tabular}
+    \quad\quad
+    \begin{tabular}{l|l}
+    \multicolumn{2}{c}{\textbf{Space Complexity}} \\
+    \hline
+    Worst Case   & $O(1)$
+    \end{tabular}
+    
+    \caption{Heapsort time\cite{clrs2009} and space complexities\textbf{[needs citation]}.}
+    \label{fig:heapsort}
+\end{figure}
+
+
+\subsection{Bubble Sort}
+
+Bubble sort works by passing the data in the collection by multiple passes. The data is processed from start to end, or left to right. Starting from the first value in the collection, the value is compared to next value, if the value is larger than the next value they are swapped. The largest value is moved to the right. This comparison and swap operation is repeated for each value in the collection until no swaps are performed. Then, the array is in sorted order.
+
+\textit{Figure \ref{fig:bubblesort_ex}} shows how bubble sort works on an example array. In the 1st pass (see \textit{Figure \ref{fig:bubblesort_ex} (a)} and \textit{(b)}), we compare $4$ with $7$, and swap is not performed because $4$ is already smaller than $7$. Next, $7$ is compared and swapped with the next elements: $5$ and $5$ (\textit{(b)} and \textit{(c)}). Similarly in the third pass \textit{(d)}, $7$ is swapped with $6$. As shown in \textit{{e}}, the fourth pass \textit{(e)} yields a sorted array, since no swaps are performed. 
+
+\textit{Figure \ref{fig:bubblesort}} shows the time and space complexities of Bubble sort.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \cellcolor{gray}4 & \cellcolor{gray}7 & 5 & 5 & 6 & 8 & 9 \\
+    \hline
+    \multicolumn{7}{c}{(a)} \\
+    \end{tabular}
+    \,
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \cellcolor{lightgray}4 & \cellcolor{gray}5 & \cellcolor{gray}7 & 5 & 6 & 8 & 9 \\
+    \hline
+    \multicolumn{7}{c}{(b)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \cellcolor{lightgray}4 & \cellcolor{lightgray}5 & \cellcolor{gray}5 & \cellcolor{gray}7 & 6 & 8 & 9 \\
+    \hline
+    \multicolumn{7}{c}{(c)} \\
+    \end{tabular}
+    \,
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \cellcolor{lightgray}4 & \cellcolor{lightgray}5 & \cellcolor{lightgray}5 & \cellcolor{gray}6 & \cellcolor{gray}7 & 8 & 9 \\
+    \hline
+    \multicolumn{7}{c}{(d)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \cellcolor{lightgray}4 & \cellcolor{lightgray}5 & \cellcolor{lightgray}5 & \cellcolor{lightgray}6 & \cellcolor{lightgray}7 & \cellcolor{lightgray}8 & \cellcolor{lightgray}9 \\
+    \hline
+    \multicolumn{7}{c}{(e)} \\
+    \end{tabular}
+    
+    \caption{Bubble sort visualization. (a) shows the input array. The comparisons are shown in dark gray, and sorted elements are shown in light gray. (b) shows pass 1 result, (c) shows pass 2 result, (d) shows pass 3 result and (e) shows pass 4 result which returns the array in sorted order.}
+    \label{fig:bubblesort_ex}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{l|l}
+    \multicolumn{2}{c}{\textbf{Time Complexity}} \\
+    \hline
+    Best Case    & $\Omega(n)$ \\
+    Average Case & $\Theta(n^2)$ \\
+    Worst Case   & $\Theta(n^2)$ \\
+    \end{tabular}
+    \quad\quad
+    \begin{tabular}{l|l}
+    \multicolumn{2}{c}{\textbf{Space Complexity}} \\
+    \hline
+    Worst Case   & $O(1)$
+    \end{tabular}
+    
+    \caption{Bubble sort time\textbf{[needs citation]} and space complexities\textbf{[needs citation]}.}
+    \label{fig:bubblesort}
+\end{figure}
+
+
+\subsection{Shell Sort}
+
+Shell sort is a generalization of the insertion sort algorithm. Using shell sort, we compare the elements of the array that are far apart, rather than adjacent. For this purpose, we define the variable $gap$, and we compare the elements that are $gap$ number of elements away from each other. This divides the initial array in a $gap$ number of interleaved sub-arrays, whose elements are sorted by comparison. With every iteration, we reduce the gap between the elements being compared, and we sort the sub-arrays. When we sort in the last pass where the $gap = 1$, the array is fully sorted. In the last pass, shell sort behaves like insertion sort.
+
+Consider the example in \textit{Figure \ref{fig:shellsort_ex} (a)}, where we want to sort the array in ascending order. In this example, we start with a value of $gap = 2$, but the initial value of $gap$ could be anything, and we reduce the value of gap by dividing it by $2$ with each pass. In \textit{(b)}, we show how the initial array is divided in interleaved sub-arrays which are shown in different colors. Next, we sort the sub-arrays individually, as shown in \textit{(c)} and \textit{(d)}. Now, we are done with the iteration, and we can move to the next iteration with $gap = 2/1 = 1$. This means the whole array will be considered now as shown in \textit{(e)}. Now, we would rearrange the elements in sorted order, but the items were already sorted in our example (see \textit{(f)}).
+
+\textit{Figure \ref{fig:shellsort}} shows the time and space complexities of Shell sort.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    13 & 35 & 55 & 3 & 4 \\
+    \hline
+    \multicolumn{5}{c}{(a)} \\
+    \end{tabular}
+    \quad\quad\quad
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \cellcolor{lightgray}13 & 35 & \cellcolor{lightgray}55 & 3 & \cellcolor{lightgray}4 \\
+    \hline
+    \multicolumn{5}{c}{(b)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \cellcolor{lightgray}4 & 35 & \cellcolor{lightgray}13 & 3 & \cellcolor{lightgray}55 \\
+    \hline
+    \multicolumn{5}{c}{(c)} \\
+    \end{tabular}
+    \quad\quad\quad
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \cellcolor{lightgray}4 & 3 & \cellcolor{lightgray}13 & 35 & \cellcolor{lightgray}55 \\
+    \hline
+    \multicolumn{5}{c}{(d)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \cellcolor{lightgray}4 & \cellcolor{lightgray}3 & \cellcolor{lightgray}13 & \cellcolor{lightgray}35 & \cellcolor{lightgray}55 \\
+    \hline
+    \multicolumn{5}{c}{(e)} \\
+    \end{tabular}
+    \quad\quad\quad
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \cellcolor{lightgray}4 & \cellcolor{lightgray}3 & \cellcolor{lightgray}13 & \cellcolor{lightgray}35 & \cellcolor{lightgray}55 \\
+    \hline
+    \multicolumn{5}{c}{(f)} \\
+    \end{tabular}
+    
+    \caption{Shell sort visualization. (a) shows the input array. (b), (c) and (d) show how mergesort splits the initial array into sub-arrays. (e), (f) and (g) shows how mergesort joins back the sub-arrays in sorted order.}
+    \label{fig:shellsort_ex}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{l|l}
+    \multicolumn{2}{c}{\textbf{Time Complexity}} \\
+    \hline
+    Best Case    & $\Omega(n \, \lg n)$ \\
+    Average Case & $\Theta(n \, (\lg n)^2)$ \\
+    Worst Case   & $\Theta(n \, (\lg n)^2)$ \\
+    \end{tabular}
+    \quad\quad
+    \begin{tabular}{l|l}
+    \multicolumn{2}{c}{\textbf{Space Complexity}} \\
+    \hline
+    Worst Case   & $O(1)$
+    \end{tabular}
+    
+    \caption{Shell sort time\textbf{[needs citation]} and space complexities\textbf{[needs citation]}.}
+    \label{fig:shellsort}
+\end{figure}
+
+
+\subsection{Radix Sort}
+
+Radix sort is not a comparative integer sorting algorithm as the other algorithms that we have seen so far. It instead sorts data lexicographically. In the case that the data is made of integers, Radix sort uses the digits of the integers to sort the data, and it uses Counting sort to help with sorting.
+
+Consider the input array shown in \textit{Figure \ref{fig:radixsort_ex} (a)}. In order to sort elements using radix sort, we use Counting sort using the last digit of each number as the sorting keys (see \textit{(b)}). Sorting the elements, we obtain the array shown in \textit{(c)}. As counting sort is stable sorting algorithm, the elements with the same key will appear in the same order. In the next step, we sort the elements by counting sort using the second to last digit as key (see \textit{(d)}), and we obtain the array shown in \textit{(e)}. Repeating the same procedure with the first digit as key (see \textit{(f)}), we notice that there are few numbers without any number in the first place. In this case, we pad the numbers zeroes as their key. Once we sort the first digit using counting sort, the whole array is sorted as displayed in \textit{(g)}.
+
+\textit{Figure \ref{fig:radixsort}} shows the time and space complexities of Radix sort.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    053 & 089 & 150 & 036 & 633 & 233 \\
+    \hline
+    \multicolumn{6}{c}{(a)} \\
+    \end{tabular}
+    \,
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    05\textbf{3} & 08\textbf{9} & 15\textbf{0} & 03\textbf{6} & 63\textbf{3} & 23\textbf{3} \\
+    \hline
+    \multicolumn{6}{c}{(b)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    15\textbf{0} & 05\textbf{3} & 63\textbf{3} & 23\textbf{3} & 03\textbf{6} & 08\textbf{9} \\
+    \hline
+    \multicolumn{6}{c}{(c)} \\
+    \end{tabular}
+    \,
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    1\textbf{5}0 & 0\textbf{5}3 & 6\textbf{3}3 & 2\textbf{3}3 & 0\textbf{3}6 & 0\textbf{8}9 \\
+    \hline
+    \multicolumn{6}{c}{(d)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    6\textbf{3}3 & 2\textbf{3}3 & 0\textbf{3}6 & 1\textbf{5}0 & 0\textbf{5}3 & 0\textbf{8}9 \\
+    \hline
+    \multicolumn{6}{c}{(e)} \\
+    \end{tabular}
+    \,
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    \textbf{6}33 & \textbf{2}33 & \textbf{0}36 & \textbf{1}50 & \textbf{0}53 & \textbf{0}89 \\
+    \hline
+    \multicolumn{6}{c}{(f)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    \textbf{0}36 & \textbf{0}53 & \textbf{0}89 & \textbf{1}50 & \textbf{2}33 & \textbf{6}33  \\
+    \hline
+    \multicolumn{6}{c}{(g)} \\
+    \end{tabular}
+    
+    \caption{Radix sort visualization. (a) shows the input array. In (b), the sorting key is marked in boldface, and the resulting array after sorting is shown in (c). This procedure is repeated in (d)-(e) and (f)-(g). Notice the numbers have been padded with zeroes on the left, so that they can be sorted.}
+    \label{fig:radixsort_ex}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{l|l}
+    \multicolumn{2}{c}{\textbf{Time Complexity}} \\
+    \hline
+    Best Case    & $\Omega(n k)$ \\
+    Average Case & $\Theta(n k)$ \\
+    Worst Case   & $\Theta(n k)$ \\
+    \end{tabular}
+    \quad\quad
+    \begin{tabular}{l|l}
+    \multicolumn{2}{c}{\textbf{Space Complexity}} \\
+    \hline
+    Worst Case   & $O(n + k)$
+    \end{tabular}
+    
+    \caption{Radix sort time\textbf{[needs citation]} and space complexities\textbf{[needs citation]}.}
+    \label{fig:radixsort}
+\end{figure}
+
+
+\subsection{Timsort}
+
+Timsort is a hybrid sorting algorithm. Timsort is a combination of Insertion sort and Mergesort. We basically divide an array into sub-arrays of length $RUN$, where $RUN$ is constant. Next, we apply binary insertion sort on each sub-array. Then, we merge the sub-arrays using Mergesort recursively to get the resulting sorted array. Timsort is extremely fast for nearly sorted data sequence. Timsort is also the default sorting algorithm in Java and Python, and it was implemented in 2002 by Tim Peter. 
+
+Consider the example shown in \textit{Figure \ref{fig:timsort_ex}}, where an array of $10$ elements is sorted using $RUN=5$. \textit{{b}} shows how the initial array \textit{(a)} is divided into sub-arrays of size $RUN$. Using Insertion sort, we sort the sub-arrays as shown in \textit{(c)}. Finally, the sub-arrays are merged back in sorted order using Mergesort. The resulting sorted array is shown in \textit{(d)}.
+
+\textit{Figure \ref{fig:timsort}} shows the time and space complexities of Timsort.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    3 & 8 & 35 & 30 & 23 & 10 & 40 & 50 & 55 & 52 \\
+    \hline
+    \multicolumn{10}{c}{(a)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    3 & 8 & 35 & 30 & 23 & \cellcolor{lightgray}10 & \cellcolor{lightgray}40 & \cellcolor{lightgray}50 & \cellcolor{lightgray}55 & \cellcolor{lightgray}52 \\
+    \hline
+    \multicolumn{10}{c}{(b)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    3 & 8 & 23 & 30 & 35 & \cellcolor{lightgray}10 & \cellcolor{lightgray}40 & \cellcolor{lightgray}50 & \cellcolor{lightgray}52 & \cellcolor{lightgray}55 \\
+    \hline
+    \multicolumn{10}{c}{(c)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    \cellcolor{lightgray}3 & \cellcolor{lightgray}8 & \cellcolor{lightgray}10 & \cellcolor{lightgray}23 & \cellcolor{lightgray}30 & \cellcolor{lightgray}35 & \cellcolor{lightgray}40 & \cellcolor{lightgray}50 & \cellcolor{lightgray}52 & \cellcolor{lightgray}55 \\
+    \hline
+    \multicolumn{10}{c}{(d)} \\
+    \end{tabular}
+    
+    \caption{Timsort visualization. (a) shows the input array. (b) shows the array being split into sub-arrays of size $RUN$. (c) shows the sub-arrays after being sorted using Insertion sort. (d) shows the resulting sorted array after using Mergesort join back the sub-arrays in sorted order.}
+    \label{fig:timsort_ex}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{l|l}
+    \multicolumn{2}{c}{\textbf{Time Complexity}} \\
+    \hline
+    Best Case    & $\Omega(n)$ \\
+    Average Case & $\Theta(n \, \lg n)$ \\
+    Worst Case   & $\Theta(n \, \lg n)$ \\
+    \end{tabular}
+    \quad\quad
+    \begin{tabular}{l|l}
+    \multicolumn{2}{c}{\textbf{Space Complexity}} \\
+    \hline
+    Worst Case   & $O(n)$
+    \end{tabular}
+    
+    \caption{Bubble sort time\cite{clrs2009} and space complexities\textbf{[needs citation]}.}
+    \label{fig:timsort}
 \end{figure}
