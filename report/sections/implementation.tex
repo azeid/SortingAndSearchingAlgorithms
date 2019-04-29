@@ -33,6 +33,8 @@ The test cases used are:
 \end{enumerate}
 
 \subsubsection{Graphing Tool}
-\url{https://github.com/azeid/SortingAndSearchingAlgorithms/tree/master/graph_generator}.
 
-TODO
+In order to represent the data from the benchmarks, we developed a graphing utility. The tool parses the resulting data files from the benchmarks, and it produces a graphical representation of the data. The data plotted is the execution times of the studied sorting algorithms for different input sizes and input cases. The utility has the ability to normalize the data using the results of any of the algorithms benchmarked. The data is organized by plotting the different input cases (the inputs cases mentioned in the previous section) in separate graphs. Each graph represents time of execution of the algorithms versus the size of the input data for an specific input case.
+
+The tool was implemented using Python 3. It uses the matplotlib plotting library to draw the graphs. The source code of the utility is available in the repository of the project at the following URL: \url{https://github.com/azeid/SortingAndSearchingAlgorithms/tree/master/graph_generator}.
+
