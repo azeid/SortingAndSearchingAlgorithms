@@ -3,3 +3,4 @@ target/*
 lib/*
 .idea
 .DS_Store
+results/*.csv
