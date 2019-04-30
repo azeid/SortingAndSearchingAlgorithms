@@ -7,12 +7,12 @@ The sorting problem is one of the fundamental problems in Computer Science. It c
 Over the times, there have been many algorithms developed to solve this problem. These algorithms employ a variety techniques, data structures and mathematical properties, which lead to some algorithms performing better than others for different input types. In our research, we focused specifically on the problem of sorting an array of integers, and we studied the performance of nine sorting algorithms when presented with multiple inputs of different sizes and makeups. We compared the performance of the following algorithms:
 
 \begin{itemize}
+  \item Bubble Sort.
   \item Insertion sort.
   \item Quicksort.
   \item Java Collections Framework Arrays sort implementation.
   \item Mergesort.
   \item Heapsort.
-  \item Bubble Sort.
   \item Shell Sort.
   \item Radix Sort.
   \item Timsort.
@@ -20,6 +20,75 @@ Over the times, there have been many algorithms developed to solve this problem.
 
 In the next subsections, we will introduce the previous algorithms, and we will talk about their theoretical time and space complexities. We will also go over their best, average and worst case inputs.
 
+
+\subsection{Bubble Sort}
+
+Bubble sort works by passing the data in the collection by multiple passes. The data is processed from start to end, or left to right. Starting from the first value in the collection, the value is compared to next value, if the value is larger than the next value they are swapped. The largest value is moved to the right. This comparison and swap operation is repeated for each value in the collection until no swaps are performed. Then, the array is in sorted order.
+
+\textit{Figure \ref{fig:bubblesort_ex}} shows how bubble sort works on an example array. In the 1st pass (see \textit{Figure \ref{fig:bubblesort_ex} (a)} and \textit{(b)}), we compare $4$ with $7$, and swap is not performed because $4$ is already smaller than $7$. Next, $7$ is compared and swapped with the next elements: $5$ and $5$ (\textit{(b)} and \textit{(c)}). Similarly in the third pass \textit{(d)}, $7$ is swapped with $6$. As shown in \textit{{e}}, the fourth pass \textit{(e)} yields a sorted array, since no swaps are performed. 
+
+\textit{Figure \ref{fig:bubblesort}} shows the time and space complexities of Bubble sort.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \cellcolor{gray}4 & \cellcolor{gray}7 & 5 & 5 & 6 & 8 & 9 \\
+    \hline
+    \multicolumn{7}{c}{(a)} \\
+    \end{tabular}
+    \,
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \cellcolor{lightgray}4 & \cellcolor{gray}5 & \cellcolor{gray}7 & 5 & 6 & 8 & 9 \\
+    \hline
+    \multicolumn{7}{c}{(b)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \cellcolor{lightgray}4 & \cellcolor{lightgray}5 & \cellcolor{gray}5 & \cellcolor{gray}7 & 6 & 8 & 9 \\
+    \hline
+    \multicolumn{7}{c}{(c)} \\
+    \end{tabular}
+    \,
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \cellcolor{lightgray}4 & \cellcolor{lightgray}5 & \cellcolor{lightgray}5 & \cellcolor{gray}6 & \cellcolor{gray}7 & 8 & 9 \\
+    \hline
+    \multicolumn{7}{c}{(d)} \\
+    \end{tabular}
+    \break
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    \cellcolor{lightgray}4 & \cellcolor{lightgray}5 & \cellcolor{lightgray}5 & \cellcolor{lightgray}6 & \cellcolor{lightgray}7 & \cellcolor{lightgray}8 & \cellcolor{lightgray}9 \\
+    \hline
+    \multicolumn{7}{c}{(e)} \\
+    \end{tabular}
+    
+    \caption{Bubble sort visualization. (a) shows the input array. The comparisons are shown in dark gray, and sorted elements are shown in light gray. (b) shows pass 1 result, (c) shows pass 2 result, (d) shows pass 3 result and (e) shows pass 4 result which returns the array in sorted order.}
+    \label{fig:bubblesort_ex}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{tabular}{l|l}
+    \multicolumn{2}{c}{\textbf{Time Complexity}} \\
+    \hline
+    Best Case    & $\Omega(n)$ \\
+    Average Case & $\Theta(n^2)$ \\
+    Worst Case   & $\Theta(n^2)$ \\
+    \end{tabular}
+    \quad\quad
+    \begin{tabular}{l|l}
+    \multicolumn{2}{c}{\textbf{Space Complexity}} \\
+    \hline
+    Worst Case   & $O(1)$
+    \end{tabular}
+    
+    \caption{Bubble sort time\textbf{[needs citation]} and space complexities\textbf{[needs citation]}.}
+    \label{fig:bubblesort}
+\end{figure}
 
 \subsection{Insertion Sort}
 
@@ -322,77 +391,6 @@ Consider the example shown in \textit{Figure \ref{fig:heapsort_ex}}, where we us
     \caption{Heapsort time\cite{clrs2009} and space complexities\textbf{[needs citation]}.}
     \label{fig:heapsort}
 \end{figure}
-
-
-\subsection{Bubble Sort}
-
-Bubble sort works by passing the data in the collection by multiple passes. The data is processed from start to end, or left to right. Starting from the first value in the collection, the value is compared to next value, if the value is larger than the next value they are swapped. The largest value is moved to the right. This comparison and swap operation is repeated for each value in the collection until no swaps are performed. Then, the array is in sorted order.
-
-\textit{Figure \ref{fig:bubblesort_ex}} shows how bubble sort works on an example array. In the 1st pass (see \textit{Figure \ref{fig:bubblesort_ex} (a)} and \textit{(b)}), we compare $4$ with $7$, and swap is not performed because $4$ is already smaller than $7$. Next, $7$ is compared and swapped with the next elements: $5$ and $5$ (\textit{(b)} and \textit{(c)}). Similarly in the third pass \textit{(d)}, $7$ is swapped with $6$. As shown in \textit{{e}}, the fourth pass \textit{(e)} yields a sorted array, since no swaps are performed. 
-
-\textit{Figure \ref{fig:bubblesort}} shows the time and space complexities of Bubble sort.
-
-\begin{figure}[!ht]
-    \centering
-    \begin{tabular}{|c|c|c|c|c|c|c|}
-    \hline
-    \cellcolor{gray}4 & \cellcolor{gray}7 & 5 & 5 & 6 & 8 & 9 \\
-    \hline
-    \multicolumn{7}{c}{(a)} \\
-    \end{tabular}
-    \,
-    \begin{tabular}{|c|c|c|c|c|c|c|}
-    \hline
-    \cellcolor{lightgray}4 & \cellcolor{gray}5 & \cellcolor{gray}7 & 5 & 6 & 8 & 9 \\
-    \hline
-    \multicolumn{7}{c}{(b)} \\
-    \end{tabular}
-    \break
-    \begin{tabular}{|c|c|c|c|c|c|c|}
-    \hline
-    \cellcolor{lightgray}4 & \cellcolor{lightgray}5 & \cellcolor{gray}5 & \cellcolor{gray}7 & 6 & 8 & 9 \\
-    \hline
-    \multicolumn{7}{c}{(c)} \\
-    \end{tabular}
-    \,
-    \begin{tabular}{|c|c|c|c|c|c|c|}
-    \hline
-    \cellcolor{lightgray}4 & \cellcolor{lightgray}5 & \cellcolor{lightgray}5 & \cellcolor{gray}6 & \cellcolor{gray}7 & 8 & 9 \\
-    \hline
-    \multicolumn{7}{c}{(d)} \\
-    \end{tabular}
-    \break
-    \begin{tabular}{|c|c|c|c|c|c|c|}
-    \hline
-    \cellcolor{lightgray}4 & \cellcolor{lightgray}5 & \cellcolor{lightgray}5 & \cellcolor{lightgray}6 & \cellcolor{lightgray}7 & \cellcolor{lightgray}8 & \cellcolor{lightgray}9 \\
-    \hline
-    \multicolumn{7}{c}{(e)} \\
-    \end{tabular}
-    
-    \caption{Bubble sort visualization. (a) shows the input array. The comparisons are shown in dark gray, and sorted elements are shown in light gray. (b) shows pass 1 result, (c) shows pass 2 result, (d) shows pass 3 result and (e) shows pass 4 result which returns the array in sorted order.}
-    \label{fig:bubblesort_ex}
-\end{figure}
-
-\begin{figure}[!ht]
-    \centering
-    \begin{tabular}{l|l}
-    \multicolumn{2}{c}{\textbf{Time Complexity}} \\
-    \hline
-    Best Case    & $\Omega(n)$ \\
-    Average Case & $\Theta(n^2)$ \\
-    Worst Case   & $\Theta(n^2)$ \\
-    \end{tabular}
-    \quad\quad
-    \begin{tabular}{l|l}
-    \multicolumn{2}{c}{\textbf{Space Complexity}} \\
-    \hline
-    Worst Case   & $O(1)$
-    \end{tabular}
-    
-    \caption{Bubble sort time\textbf{[needs citation]} and space complexities\textbf{[needs citation]}.}
-    \label{fig:bubblesort}
-\end{figure}
-
 
 \subsection{Shell Sort}
 

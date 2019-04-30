@@ -5,26 +5,26 @@ As part of adding the sorting algorithms for this project, we also added correct
 
 \subsection{Test Cases}
 In order for us to compare the time complexity of different sorting algorithms, we had to come up with different test cases. We made available all the test cases used in the comparison at the repository \url{https://github.com/azeid/SortingAndSearchingAlgorithms/tree/master/testCases}.\\
-The naming convention used was "TestCase\textunderscore DataSize.txt", for example "testCases/SortedInAscendingOrderCase \textunderscore 1000.txt". The naming convention made it easy to identify test cases and parse the output report from the benchmark tool.
+The naming convention used for test files was "TestCase\textunderscore DataSize.txt". For example, in the case of sorted in ascending order with 1000 elements the file name would be "testCases/SortedInAscendingOrderCase \textunderscore 1000.txt". This naming convention made it easy for us to identify test cases and parse the output report from the benchmark tool.
 
 \subsubsection{Test Cases Generation}
 Generating test cases is a tedious task if done manually; however, we automated the process of generating different test cases. We have 11 unique test cases that we ran on each algorithm. Additionally, we created the test case generation functions to generate any data size for any particular test case. Also, we tried to include test cases that cover the best, worst, and average cases for our sorting algorithms in order for the comparison to show advantages and disadvantages of different sorting algorithms based on test cases and data sizes.
 
 \subsubsection{Test Cases Generation Correctness}
-For every test case generator function we included unit tests to verify the correctness of the generated arrays. Given that the functions can handle any data size, we have to make sure that for large data sizes that correctness still holds. These unit tests gave us confidence that our test cases are what we expect them to be.
+For every test case generator function we implemented unit tests to verify the correctness of the generated arrays. Given that the functions can handle any data size, we had to make sure that for large data sizes that correctness still holds. These unit tests gave us confidence that our test cases are what we expect them to be.
 
-\subsubsection{Test Cases Used}
-We have a total of 11 unique test cases. For each test case we created multiple data sizes starting from 100 to 10,000,000 (since 10 was excluded since it was too small for any comparison). We were not able to upload the 10,000,000 data size test cases as they were too large.
+\subsubsection{Test Cases Included in Results}
+We have a total of 11 unique test cases. For each test case we created multiple data sizes starting from 100 to 10,000,000 (10 was excluded since it was too small for any comparison). We were not able to upload the 10,000,000 data size test cases as the files were too large.
 
 The test cases used are:
 \begin{enumerate}
     \item Sorted In Ascending Order
     \item Sorted In Descending Order  
     \item Random Order  
-    \item Random Order - High Numbers on First Half and Low Numbers of Second Half  
-    \item Random Order - Low Numbers on First Half and High Numbers of Second Half  
-    \item Sorted In Ascending Order - High Numbers on First Half and Low Numbers of Second Half 
-    \item Sorted In Descending Order - High Numbers on First Half and Low Numbers of Second Half 
+    \item Random Order - High Numbers on First Half and Low Numbers on Second Half  
+    \item Random Order - Low Numbers on First Half and High Numbers on Second Half  
+    \item Sorted In Ascending Order - High Numbers on First Half and Low Numbers on Second Half 
+    \item Sorted In Descending Order - High Numbers on First Half and Low Numbers on Second Half 
     \item Nearly Sorted In Ascending Order
     \item Nearly Sorted In Descending Order
     \item Same Value Array
