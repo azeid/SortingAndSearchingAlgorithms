@@ -201,6 +201,35 @@ In the unsorted array of data shown in \textit{Figure \ref{fig:quicksort_ex} (a)
     \label{fig:quicksort}
 \end{figure}
 
+\subsection{Java Collections Framework Arrays sort implementation}
+The Java Collection Array Sort algorithm is a Dual-Pivot Quicksort by Vladimir Yaroslavskiy, Jon Bentley, and Joshua Bloch \cite{JavaCollectionFrameworkArraysSort}. This algorithm offers $O(nlog(n))$ performance on many data sets that cause other quicksorts to degrade to quadratic performance, and is typically faster than traditional (one-pivot) Quicksort implementations. According to the latest update on the Array Sort algorithm by Vladimir Yaroslavskiy \cite{VladimirYaroslavskiy}, there has been a lot of changes in order to optimize the Array Sort algorithm. These changes include: 
+
+\begin{itemize}
+    \item Pivots are chosen with another step, the 1-st and 5-th candidates
+   are taken as pivots instead of 2-nd and 4-th.
+   \item Splitting into parts is related to the golden ratio.
+   \item Pivot candidates are sorted by combination of 5-element
+   network sorting + insertion sort
+   \item Pivot candidates are sorted by combination of 5-element
+   network sorting + insertion sort
+   \item New backwards partitioning is simpler and more efficient
+   \item Quicksort tuning parameters were updated
+   \item Merging sort is invoked on each iteration from Quicksort
+   \item Heap sort is invoked on the leftmost part
+   \item Heap sort is used as a guard against quadratic time
+   \item Merging sort and pair insertion sort were moved from
+   DualPivotQuicksort class
+   \item Pair insertion sort was simplified and optimized
+   \item New nano insertion sort was introduced for tiny arrays
+   \item Merging sort was fully rewritten
+   \item Optimized merging partitioning is used
+   \item Merging parameters were updated
+   \item Merging of runs was fully rewritten
+   \item Fast version of heap sort was introduced
+\end{itemize}
+
+This list above shows how the Java Collection Array sort algorithm is highly optimized and it uses multiple sorting algorithms underneath to increase performance. Given that this algorithm adapts and uses different sorting algorithms and techniques underneath, it is hard to specify the overall time and space complexity. However, we can get a feel of the complexity by looking and the performance of Quick Sort, Merge Sort, and Heap Sort.
+
 
 \subsection{Mergesort}
 

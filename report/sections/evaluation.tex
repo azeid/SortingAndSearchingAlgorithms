@@ -8,56 +8,82 @@ Next step was to use the generated test cases files as inputs for our benchmarks
 The overall benchmark running time was over 36 hours. This was because we had large data sizes and due to the bad performance of some sorting algorithms in their worst case such as Bubble sort. We had to exclude Insertion and Bubble sort when running the test cases with a data size of 10,000,000.
 
 \subsection{Results}
+We ran the benchmark suite on a machine with an 4-cores and 8 logical processors @ 3.4Ghz and 24Gb of DDR4 RAM @ 3,401Mhz. The benchmark result reports can be found at \url{https://github.com/azeid/SortingAndSearchingAlgorithms/tree/master/results}. All the algorithms were run serially and nothing was parallelized. The benchmarks suite took around 36 hours where the majority of time was spent on Bubble and Insertion sorts since they were very slow. We ran data size of 10,000,000 for all the algorithms excluding Bubble and Insertions Sort; however, we did not include it since the results were linear with the data size and it was not adding any new information. We do have all the produces results and reports in our public GitHub repository \url{https://github.com/azeid/SortingAndSearchingAlgorithms}. In the graphs that we will use in this section the title of the graph will be the test case, they X-Axis is the data size and the Y-Axis is the time it took to sort the test case in microseconds.
 
-TODO
+\subsubsection{Interesting Observations}
+In this section we will highlight some of the interesting observations that we found from our benchmark results since we cannot include all our graphs in the report due to space limitations; however, you can refer to the complete results and graphs in our public GitHub repository \url{https://github.com/azeid/SortingAndSearchingAlgorithms}. In Figure \ref{fig:allInDescendingOrder} we can see how bubble sort and insertion sort are very inefficient when it comes to sorting data compared to other sorting algorithms as the size of data increases, in fact we had to remove them from the final data comparison in order to see how the other algorithms performed compare to each other.
 
-We ran the benchmark suite in machine with an 4-cores and 8 logical processors @ 3.4Ghz and 24Gb of DDR4 RAM @ 3,401Mhz. The benchmark result report can be found at \url{https://github.com/azeid/SortingAndSearchingAlgorithms/tree/master/results}.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{figures/plots_all_algs/sorting_time_vs_input_array_size_SortedInDescendingOrderCase.png}
+\caption{All Algorithms - Data Sorted in Descending Order}
+\label{fig:allInDescendingOrder}
+\end{figure}
 
-As a baseline we decided to run all the tests in our serial implementation of Gale-Shapley. Results are shows in Table \ref{tab:serial-gale-shapley}. In every cell the amount of milliseconds to complete an operation of the algorithm, i.e. get a result, and the margin of error is specified and a confidence interval of 99\%. 
+Another interesting observation is shown in Figure \ref{fig:allButBubbleInAscendingOrder} where the test case is of an array that is already sorted in ascending order i.e. best case. We can observe that insertion sort is as fast as the Java Utility Array Sort implementation, which is highly optimized, and see how other sorting algorithms still take some time even though the array is already sorted.
 
-\begin{table}[!ht]
-    \centering
-\begin{tabular}{|l|l|l|l|}
-\hline
-\multicolumn{1}{|c|}{\textbf{n}} & \multicolumn{1}{c|}{\textbf{Best (ms/op)}} & \multicolumn{1}{c|}{\textbf{Random (ms/op)}} & \multicolumn{1}{c|}{\textbf{Worst (ms/op)}} \\ \hline
-10                               & 0.011 ±,0.001                              & 0.014 ±,0.001                                & 0.022 ±,0.001                               \\ \hline
-100                              & 0.867 ±,0.009                              & 1.198 ±,0.003                                & 6.595 ±,0.227                               \\ \hline
-200                              & 3.463 ±,0.064                              & 5.423 ±,0.238                                & 43.587 ±,0.563                              \\ \hline
-1000                             & 87.740 ±,0.628                             & 139.563 ±,3.146                              & 8782.987 ± 3636.943                         \\ \hline
-\end{tabular}
-    \caption{Serial Gale-Shapley}
-    \label{tab:serial-gale-shapley}
-\end{table}
+\begin{figure}[H]
+\centering
+\includegraphics[width=9cm]{figures/plots_without_BubbleSort/sorting_time_vs_input_array_size_SortedInAscendingOrderCase.png}
+\caption{All Algorithms Excluding Bubble Sort - Data Sorted in Ascending Order}
+\label{fig:allButBubbleInAscendingOrder}
+\end{figure}
 
-We then followed by running our parallel version of Gale-Shapley. Results are shown in Table \ref{tab:parallel-gale-shapley}.
+\subsubsection{Final Results Excluding Bubble and Insertion Sort}
 
+Below are the results for all the test cases for all sorting algorithms except Bubble Sort and Insertion Sort since they are too slow compared to other sorting algorithms and would hide the relative differences between the other algorithms if included.
 
-\begin{table}[!ht]
-    \centering
-\begin{tabular}{|l|l|l|l|}
-\hline
-\multicolumn{1}{|c|}{\textbf{n}} & \multicolumn{1}{c|}{\textbf{Best (ms/op)}} & \multicolumn{1}{c|}{\textbf{Random (ms/op)}} & \multicolumn{1}{c|}{\textbf{Worst (ms/op)}} \\ \hline
-10                               & 0.176 ±,0.011                              & 0.177 ±,0.004                                & 0.176 ±,0.010                               \\ \hline
-100                              & 0.379 ±,0.013                              & 0.376 ±,0.011                                & 1.082 ±,0.009                               \\ \hline
-200                              & 0.564 ±,0.022                              & 0.728 ±,0.059                                & 5.576 ±,0.106                               \\ \hline
-1000                             & 2.115 ±,0.023                              & 3.751 ±,0.168                                & 482.950 ±,31.277                            \\ \hline
-\end{tabular}
-    \caption{Parallel Gale-Shapley}
-    \label{tab:parallel-gale-shapley}
-\end{table}
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=9cm]{figures/plots_without_BubbleSort_InsertionSort/sorting_time_vs_input_array_size_SortedInAscendingOrderCase.png}
+\end{figure}
 
-Finally we ran our approach to divide and conquer in parallel. Results are shown in Table \ref{tab:parallel-tseng-lee}
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=9cm]{figures/plots_without_BubbleSort_InsertionSort/sorting_time_vs_input_array_size_SortedInDescendingOrderCase.png}
+\end{figure}
 
-\begin{table}[!ht]
-    \centering
-\begin{tabular}{|l|l|l|l|}
-\hline
-\multicolumn{1}{|c|}{\textbf{n}} & \multicolumn{1}{c|}{\textbf{Best (ms/op)}} & \multicolumn{1}{c|}{\textbf{Random (ms/op)}} & \multicolumn{1}{c|}{\textbf{Worst (ms/op)}} \\ \hline
-10                               & 0.168 ±,0.003                              & 0.169 ±,0.007                                & 0.174 ±,0.013                               \\ \hline
-100                              & 0.691 ±,0.007                              & 1.008 ±,0.035                                & 1.999 ±,0.025                               \\ \hline
-200                              & 2.153 ±,0.034                              & 3.773 ±,0.150                                & 8.559 ±,0.304                               \\ \hline
-1000                             & 43.971 ±,0.752                             & 74.536 ±,2.207                               & 401.745 ±,7.819                             \\ \hline
-\end{tabular}
-    \caption{Parallel Tseng-Lee}
-    \label{tab:parallel-tseng-lee}
-\end{table}
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=9cm]{figures/plots_without_BubbleSort_InsertionSort/sorting_time_vs_input_array_size_RandomOrderCase.png}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=9cm]{figures/plots_without_BubbleSort_InsertionSort/sorting_time_vs_input_array_size_AscendingOrderHighOnFirstHalfAndLowOnSecondHalf.png}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=9cm]{figures/plots_without_BubbleSort_InsertionSort/sorting_time_vs_input_array_size_DescendingOrderHighOnFirstHalfAndLowOnSecondHalf.png}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=9cm]{figures/plots_without_BubbleSort_InsertionSort/sorting_time_vs_input_array_size_RandomHighOnFirstHalfAndLowOnSecondHalf.png}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=9cm]{figures/plots_without_BubbleSort_InsertionSort/sorting_time_vs_input_array_size_RandomLowOnFirstHalfAndHighOnSecondHalf.png}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=9cm]{figures/plots_without_BubbleSort_InsertionSort/sorting_time_vs_input_array_size_NearlySortedInAscendingOrderCase.png}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=9cm]{figures/plots_without_BubbleSort_InsertionSort/sorting_time_vs_input_array_size_NearlySortedInDescendingOrderCase.png}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=9cm]{figures/plots_without_BubbleSort_InsertionSort/sorting_time_vs_input_array_size_SameValueCase.png}
+\end{figure}
+
+\begin{figure}[!htp]
+\centering
+\includegraphics[width=9cm]{figures/plots_without_BubbleSort_InsertionSort/sorting_time_vs_input_array_size_MergeSortWorstCase.png}
+\end{figure}
