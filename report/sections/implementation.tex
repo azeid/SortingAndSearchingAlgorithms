@@ -1,10 +1,10 @@
-The sorting algorithms and the benchmark tool are written in Java using JDk 11. We have made available the source code of all implementations at the public GitHub repository \url{https://github.com/azeid/SortingAndSearchingAlgorithms}.
+The sorting algorithms and the benchmark tool are written in Java using JDk 11. We have made available the source code of all implementations at the public GitHub repository \cite{GitHubProjectURL}.
 
 \subsection{Sorting Algorithms Correctness}
 As part of adding the sorting algorithms for this project, we also added correctness checks to make sure that the sorting algorithm is producing a sorted result and that the resulting array is a permutation of the original input array. This we we have confidence that the algorithm is correct. Additionally, we added smaller unit tests for each algorithm to make sure we cover the corner cases and validate that the algorithms handle unexpected inputs gracefully.
 
 \subsection{Test Cases}
-In order for us to compare the time complexity of different sorting algorithms, we had to come up with different test cases. We made available all the test cases used in the comparison at the repository \url{https://github.com/azeid/SortingAndSearchingAlgorithms/tree/master/testCases}.\\
+In order for us to compare the time complexity of different sorting algorithms, we had to come up with different test cases. We made available all the test cases used in the comparison at our GitHub repository \cite{GitHubProjectURL}.\\
 The naming convention used for test files was "TestCase\textunderscore DataSize.txt". For example, in the case of sorted in ascending order with 1000 elements the file name would be "testCases/SortedInAscendingOrderCase \textunderscore 1000.txt". This naming convention made it easy for us to identify test cases and parse the output report from the benchmark tool.
 
 \subsubsection{Test Cases Generation}
@@ -36,5 +36,5 @@ The test cases used are:
 
 In order to represent the data from the benchmarks, we developed a graphing utility. The tool parses the resulting data files from the benchmarks, and it produces a graphical representation of the data. The data plotted is the execution times of the studied sorting algorithms for different input sizes and input cases. The utility has the ability to normalize the data using the results of any of the algorithms benchmarked. The data is organized by plotting the different input cases (the inputs cases mentioned in the previous section) in separate graphs. Each graph represents time of execution of the algorithms versus the size of the input data for an specific input case.
 
-The tool was implemented using Python 3. It uses the matplotlib plotting library to draw the graphs. The source code of the utility is available in the repository of the project at the following URL: \url{https://github.com/azeid/SortingAndSearchingAlgorithms/tree/master/graph_generator}.
+The tool was implemented using Python 3. It uses the matplotlib plotting library to draw the graphs. The source code of the utility is available in the repository of the project \cite{GitHubProjectURL}.
 
